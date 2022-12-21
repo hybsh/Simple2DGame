@@ -188,11 +188,12 @@ public class Player extends Entity{
                 spriteCounter = 0;
             }
         }
-        if(gp.keyH.shotKeyPressed == true && projectile.alive == false){
+        if(gp.keyH.shotKeyPressed == true && projectile.alive == false && shotAvailableCounter == 30){
 
             projectile.set(worldX,worldY,direction,true,this);
             gp.projectileList.add(projectile);
             gp.playSoundEffect(8);
+            shotAvailableCounter = 0;
 
         }
 
@@ -203,6 +204,10 @@ public class Player extends Entity{
                 invincible = false;
                 invincibleCounter = 0;
             }
+        }
+
+        if(shotAvailableCounter < 30){
+            shotAvailableCounter ++;
         }
 
     }
@@ -351,7 +356,7 @@ public class Player extends Entity{
             }
         }
     }
-    public void damageMob(int i){
+    public void damageMob(int i, int attack){
         if(i != 999){
            if(gp.mob[i].invincible == false){
                gp.playSoundEffect(3);
@@ -402,7 +407,7 @@ public class Player extends Entity{
             solidArea.height = attackArea.height;
 
             int mobIndex = gp.checker.checkEntity(this, gp.mob);
-            damageMob(mobIndex);
+            damageMob(mobIndex,attack);
 
             worldX = currentWorldX;
             worldY = currentWorldY;

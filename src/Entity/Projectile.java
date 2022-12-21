@@ -18,6 +18,18 @@ public class Projectile extends Entity{
         this.life = this.maxLife;
     }
     public void update(){
+
+        if(user == gp.player){
+            int mobIndex = gp.checker.checkEntity(this,gp.mob);
+            if(mobIndex != 999){
+                gp.player.damageMob(mobIndex, attack);
+                alive = false;
+            }
+        }
+        if(user != gp.player){
+
+        }
+
         switch (direction){
             case "up": worldY -= speed; break;
             case "down": worldY += speed; break;

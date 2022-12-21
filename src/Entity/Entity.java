@@ -40,6 +40,7 @@ public class Entity {
     public int invincibleCounter = 0;
     public int dyingCounter = 0;
     public int hpBarCounter = 0;
+    public int shotAvailableCounter =0;
 
 
 
