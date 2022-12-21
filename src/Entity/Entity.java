@@ -70,7 +70,10 @@ public class Entity {
     public int defenseVal;
     public String description = "";
     public int useCost;
+    public int value;
 
+
+    //TYPES
     public int type; //0 = player, 1=NPC, 2=mob,
     public final int type_player = 0;
     public final int type_npc = 1;
@@ -79,6 +82,7 @@ public class Entity {
     public final int type_axe = 4;
     public final int type_shield = 5;
     public final int type_consumable = 6;
+    public final int type_pickUpOnly = 7;
 
 
 
@@ -178,7 +182,7 @@ public class Entity {
             if(dying == true){
                 dyingAnimation(g2);
             }
-            g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+            g2.drawImage(image, screenX, screenY,null);
 
             changeAlpha(g2,1f);
         }

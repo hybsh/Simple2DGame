@@ -223,21 +223,30 @@ public class Player extends Entity{
     }
     public void pickUpObject(int index){
 
-        if( index != 999){
-            String text;
+        if( index != 999) {
 
-            if(inventory.size() != maxInvSize){
-                inventory.add(gp.obj[index]);
-                gp.playSoundEffect(2);
-                text = "You got a " + gp.obj[index].name;
-            }
-            else{
-                text = "Inventory full!";
+            //COINS
+            if (gp.obj[index].type == type_pickUpOnly) {
+                 gp.obj[index].use(this);
+                 gp.obj[index] = null;
             }
 
-            gp.UI.addMessage(text);
-            gp.obj[index] = null;
+            else {
+                //SHOW IN INV
+                String text;
 
+                if (inventory.size() != maxInvSize) {
+                    inventory.add(gp.obj[index]);
+                    gp.playSoundEffect(2);
+                    text = "You got a " + gp.obj[index].name;
+                } else {
+                    text = "Inventory full!";
+                }
+
+                gp.UI.addMessage(text);
+                gp.obj[index] = null;
+
+            }
         }
 
     }
