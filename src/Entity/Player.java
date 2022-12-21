@@ -48,9 +48,11 @@ public class Player extends Entity{
         speed = 4;
         direction = "down";
 
+        level = 1;
         maxLife = 6;
         life = maxLife;
-        level = 1;
+        maxMana = 4;
+        mana = maxMana;
         strength =1;
         dexterity =1;
         XP = 0;
@@ -188,12 +190,20 @@ public class Player extends Entity{
                 spriteCounter = 0;
             }
         }
-        if(gp.keyH.shotKeyPressed == true && projectile.alive == false && shotAvailableCounter == 30){
+        if(gp.keyH.shotKeyPressed == true
+                && projectile.alive == false
+                && shotAvailableCounter == 30
+                && projectile.hasMana(this) == true){
 
             projectile.set(worldX,worldY,direction,true,this);
+
+            projectile.spendMana(this);
+
             gp.projectileList.add(projectile);
-            gp.playSoundEffect(8);
+
             shotAvailableCounter = 0;
+
+            gp.playSoundEffect(8);
 
         }
 

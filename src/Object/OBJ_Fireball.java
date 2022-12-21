@@ -1,5 +1,6 @@
 package Object;
 
+import Entity.Entity;
 import Entity.Projectile;
 import Main.gamePannel;
 
@@ -28,5 +29,17 @@ public class OBJ_Fireball extends Projectile {
         right1 = prepImg("/Projectile/fireball_right_1", gp.tileSize, gp.tileSize);
         right2 = prepImg("/Projectile/fireball_right_2", gp.tileSize, gp.tileSize);
 
+    }
+
+    public boolean hasMana(Entity user){
+        boolean hasMana = false;
+        if(user.mana >= useCost){
+            hasMana = true;
+        }
+        return hasMana;
+    }
+
+    public void spendMana(Entity user){
+        user.mana -= useCost;
     }
 }

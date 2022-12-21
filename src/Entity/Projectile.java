@@ -27,7 +27,11 @@ public class Projectile extends Entity{
             }
         }
         if(user != gp.player){
-
+            boolean hitPlayer = gp.checker.checkPlayer(this);
+            if(gp.player.invincible == false && hitPlayer == true){
+                damagePlayer(attack);
+                alive = false;
+            }
         }
 
         switch (direction){
@@ -52,4 +56,9 @@ public class Projectile extends Entity{
         }
         spriteCounter = 0;
     }
+    public boolean hasMana(Entity user){
+        boolean hasMana = false;
+        return hasMana;
+    }
+    public void spendMana(Entity user){}
 }

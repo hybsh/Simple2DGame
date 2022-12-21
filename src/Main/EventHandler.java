@@ -95,6 +95,7 @@ public class EventHandler {
             gp.playSoundEffect(7);
             gp.UI.currentDialogue = "You have been healed\n by the grace of the gods!";
             gp.player.life = gp.player.maxLife;
+            gp.player.mana = gp.player.maxMana;
             gp.eSetter.setMobz();
         }
     }
