@@ -39,6 +39,7 @@ public class gamePannel extends JPanel implements Runnable{
     Sound music = new Sound();
     public userInterface UI = new userInterface(this);
     public EventHandler eHandler = new EventHandler(this);
+    config  config = new config(this);
     Thread gameThread;
     public collisionCheck checker = new collisionCheck(this);
     public entitySetter eSetter = new entitySetter(this);

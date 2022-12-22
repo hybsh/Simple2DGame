@@ -2,13 +2,10 @@ package Entity;
 
 import Main.gamePannel;
 import Main.keyHandler;
-import Main.utilities;
 import Object.*;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -207,7 +204,6 @@ public class Player extends Entity{
             shotAvailableCounter = 0;
 
             int randomSpellSound = new Random().nextInt(4)+8;
-            System.out.println(randomSpellSound);
             gp.playSoundEffect(randomSpellSound);
 
         }
@@ -440,7 +436,7 @@ public class Player extends Entity{
             damageMob(mobIndex,attack);
 
             int iTileIndex = gp.checker.checkEntity(this,gp.iTile);
-            damageInteractivetile(iTileIndex);
+            damageInteractiveTile(iTileIndex);
 
 
             worldX = currentWorldX;
@@ -498,13 +494,12 @@ public class Player extends Entity{
 
         }
     }
-    public void damageInteractivetile(int i){
+    public void damageInteractiveTile(int i){
         if(i != 999 && gp.iTile[i].destructible == true
                 && gp.iTile[i].useCorrectItem(this) == true
                 && gp.iTile[i].invincible == false){
             gp.iTile[i].life --;
             gp.iTile[i].invincible = true;
-
             generateParticle(gp.iTile[i],gp.iTile[i]);
 
 

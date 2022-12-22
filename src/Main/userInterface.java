@@ -164,6 +164,7 @@ public class userInterface {
         g2.fillRect(textX,textY,soundWidth,24);
 
 
+        gp.config.saveConfig();
     }
     public void options_controls(int frameX, int frameY){
         int textX,textY;
