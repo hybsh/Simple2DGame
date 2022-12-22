@@ -42,8 +42,63 @@ public class keyHandler implements KeyListener {
         else if(gp.gameState == gp.statusState){
             statusState(code);
         }
+        else if(gp.gameState == gp.optionsState){
+            optionsState(code);
+        }
     }
 
+    private void optionsState(int code) {
+
+        if(code == KeyEvent.VK_ESCAPE){
+            gp.gameState = gp.playState;
+            gp.UI.subState = 0;
+        }
+
+        if(code == KeyEvent.VK_ENTER){
+            enterPressed = true;
+        }
+
+        int maxCommandNum = 0;
+        switch (gp.UI.subState){
+            case 0: maxCommandNum = 4;break;
+            case 3: maxCommandNum = 1; break;
+        }
+
+        if(code == KeyEvent.VK_UP){
+            gp.UI.commandNum --;
+            if(gp.UI.commandNum < 0){
+                gp.UI.commandNum = maxCommandNum;
+            }
+        }
+        if(code == KeyEvent.VK_DOWN){
+            gp.UI.commandNum ++;
+            if(gp.UI.commandNum > maxCommandNum){
+                gp.UI.commandNum = 0;
+            }
+        }
+        if(code == KeyEvent.VK_LEFT){
+            if(gp.UI.subState == 0){
+                if(gp.UI.commandNum == 0 && gp.music.volumeScale > 0){
+                    gp.music.volumeScale--;
+                    gp.music.checkVolume();
+                }
+                if(gp.UI.commandNum == 1 && gp.sound.volumeScale > 0){
+                    gp.sound.volumeScale--;
+                }
+            }
+        }
+        if(code == KeyEvent.VK_RIGHT){
+            if(gp.UI.subState == 0){
+                if(gp.UI.commandNum == 0 && gp.music.volumeScale < 5){
+                    gp.music.volumeScale++;
+                    gp.music.checkVolume();
+                }
+                if(gp.UI.commandNum == 1 && gp.sound.volumeScale < 5){
+                    gp.sound.volumeScale++;
+                }
+            }
+        }
+    }
 
 
     public void startState(int code){
@@ -102,6 +157,10 @@ public class keyHandler implements KeyListener {
         if(code == KeyEvent.VK_F){
             shotKeyPressed = true;
         }
+        if(code == KeyEvent.VK_ESCAPE){
+            gp.gameState = gp.optionsState;
+        }
+
 
 
         if(code == KeyEvent.VK_T){

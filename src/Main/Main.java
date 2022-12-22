@@ -3,11 +3,14 @@ package Main;
 import javax.swing.*;
 
 public class Main {
+
+    public static JFrame window;
     public static void main(String[] args) {
-        JFrame window = new JFrame();
+        window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
         window.setTitle("Yay");
+        //window.setUndecorated(true);
 
         gamePannel gamePannel = new gamePannel();
         window.add(gamePannel);
@@ -17,7 +20,7 @@ public class Main {
         window.setLocationRelativeTo(null);
         window.setVisible(true);
 
-        gamePannel.initGame();
+        gamePannel.initGame(args[0]);
         gamePannel.startThread();
 
     }
