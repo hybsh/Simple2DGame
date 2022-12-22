@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Player extends Entity{
     keyHandler keyH;
@@ -205,7 +206,9 @@ public class Player extends Entity{
 
             shotAvailableCounter = 0;
 
-            gp.playSoundEffect(8);
+            int randomSpellSound = new Random().nextInt(4)+8;
+            System.out.println(randomSpellSound);
+            gp.playSoundEffect(randomSpellSound);
 
         }
 
