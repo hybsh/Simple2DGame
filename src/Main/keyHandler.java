@@ -45,6 +45,9 @@ public class keyHandler implements KeyListener {
         else if(gp.gameState == gp.optionsState){
             optionsState(code);
         }
+        else if(gp.gameState == gp.gameOverState){
+            gameOverState(code);
+        }
     }
 
     private void optionsState(int code) {
@@ -163,6 +166,7 @@ public class keyHandler implements KeyListener {
 
 
 
+
         if(code == KeyEvent.VK_T){
             if(checkDrawTime == false){
                 checkDrawTime = true;
@@ -209,6 +213,36 @@ public class keyHandler implements KeyListener {
         }
         if(code == KeyEvent.VK_ENTER){
             gp.player.selectItem();
+        }
+    }
+    public void gameOverState(int code){
+        if(code == KeyEvent.VK_UP){
+            gp.UI.commandNum --;
+            if(gp.UI.commandNum < 0){
+                gp.UI.commandNum = 2;
+            }
+        }
+        if(code == KeyEvent.VK_DOWN){
+            gp.UI.commandNum ++;
+            if(gp.UI.commandNum > 2){
+                gp.UI.commandNum = 0;
+            }
+        }
+        if(code == KeyEvent.VK_ENTER){
+            if(gp.UI.commandNum == 0){
+                gp.gameState = gp.playState;
+                gp.player.invincible = false;
+                gp.retry();
+            }
+            else if(gp.UI.commandNum == 1){
+                gp.restart();
+                gp.player.invincible = false;
+                gp.gameState = gp.playState;
+            }
+            else if(gp.UI.commandNum == 2){
+                gp.UI.commandNum = 0;
+                System.exit(0);
+            }
         }
     }
 

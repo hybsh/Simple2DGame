@@ -59,6 +59,7 @@ public class gamePannel extends JPanel implements Runnable{
     public final int dialogueState = 3;
     public final int statusState = 4;
     public final int optionsState = 5;
+    public final int gameOverState = 6;
 
     //Player default position
     int playerX = 100;
@@ -82,9 +83,24 @@ public class gamePannel extends JPanel implements Runnable{
         tempScreen = new BufferedImage(screenWidth,screenHeight,BufferedImage.TYPE_INT_ARGB);
         g2 =  (Graphics2D) tempScreen.getGraphics();
 
-        if(screenType.equals("Fullscreen")){
+        if(screenType.equals("Fullscreen") && screenType != null){
             setFullScreen();
         }
+    }
+    public void retry(){
+        player.setDefaultPositions();
+        player.restoreLifeAndMana();
+        eSetter.setNPC();
+        eSetter.setMobz();
+    }
+    public void restart(){
+        player.setDefaultValues();
+        player.setDefaultPositions();
+        player.setItems();
+        eSetter.setObject();
+        eSetter.setNPC();
+        eSetter.setMobz();
+        eSetter.setInteractiveTiles();
     }
     public void startThread(){
         gameThread = new Thread(this);
