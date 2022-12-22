@@ -36,6 +36,14 @@ public class entitySetter {
         gp.obj[5].worldX = gp.tileSize *22;
         gp.obj[5].worldY = gp.tileSize *20;
 
+        gp.obj[6] = new OBJ_Heart(gp);
+        gp.obj[6].worldX = gp.tileSize *23;
+        gp.obj[6].worldY = gp.tileSize *20;
+
+        gp.obj[7] = new OBJ_Mana(gp);
+        gp.obj[7].worldX = gp.tileSize *24;
+        gp.obj[7].worldY = gp.tileSize *20;
+
     }
     public void setNPC(){
         gp.npc[0] = new NPC_Priest(gp);

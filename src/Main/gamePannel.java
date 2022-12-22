@@ -36,7 +36,7 @@ public class gamePannel extends JPanel implements Runnable{
     public collisionCheck checker = new collisionCheck(this);
     public entitySetter eSetter = new entitySetter(this);
     public Player player = new Player(this, keyH);
-    public Entity obj[] = new Entity[10];
+    public Entity obj[] = new Entity[20];
     public Entity npc[] = new Entity[10];
     public Entity mob[] = new Entity[20];
     ArrayList<Entity> entities = new ArrayList<>();
@@ -117,6 +117,7 @@ public class gamePannel extends JPanel implements Runnable{
                         mob[i].update();
                     }
                     if(mob[i].alive == false){
+                        mob[i].checkDrop();
                         mob[i] = null;
                     }
                 }

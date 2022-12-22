@@ -10,7 +10,7 @@ import Main.gamePannel;
 
             name = "Rock";
             speed = 8;
-            maxLife = 80;
+            maxLife = 40;
             life = maxLife;
             attack = 2;
             useCost = 1;

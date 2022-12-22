@@ -74,4 +74,20 @@ public class Slime extends Entity {
         actionLockCounter = 0;
         direction = gp.player.direction;
     }
+
+    public void checkDrop(){
+
+        int i = new Random().nextInt(100) + 1;
+
+        if(i < 50){
+            dropItem(new OBJ_Gold_Coin(gp));
+        }
+        if(i >= 50 && i < 75){
+            dropItem(new OBJ_Heart(gp));
+        }
+
+        if(i >= 75 && i < 100){
+            dropItem(new OBJ_Mana(gp));
+        }
+    }
 }

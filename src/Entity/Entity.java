@@ -319,5 +319,17 @@ public class Entity {
     public void changeAlpha(Graphics2D g2, float alphaValue){
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alphaValue));
     }
+
+    public void checkDrop(){}
+    public void dropItem(Entity droppedItem){
+        for(int i = 0; i <gp.obj.length; i++){
+            if(gp.obj[i] == null){
+                gp.obj[i] = droppedItem;
+                gp.obj[i].worldX = worldX;
+                gp.obj[i].worldY = worldY;
+                break;
+            }
+        }
+    }
 }
 

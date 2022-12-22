@@ -8,10 +8,17 @@ public class OBJ_Mana extends Entity {
     public OBJ_Mana(gamePannel gp) {
         super(gp);
         this.gp = gp;
-
+        type = type_pickUpOnly;
+        down1 = prepImg("/Objects/manacrystal_full", gp.tileSize,gp.tileSize);
+        value = 1;
         name = "Mana crystal";
         image = prepImg("/Objects/manacrystal_full", gp.tileSize,gp.tileSize);
         image2 = prepImg("/Objects/manacrystal_blank", gp.tileSize,gp.tileSize);
 
+    }
+
+    public void use(Entity entity){
+        gp.UI.addMessage("Mana + " + value);
+        entity.mana += value;
     }
 }

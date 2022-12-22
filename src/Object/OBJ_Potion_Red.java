@@ -18,9 +18,5 @@ public class OBJ_Potion_Red extends Entity {
         gp.gameState = gp.dialogueState;
         gp.UI.currentDialogue = "You drink the potion! \n Good job you cunt!";
         entity.life += value;
-        if(gp.player.life > gp.player.maxLife){
-            gp.player.life = gp.player.maxLife;
-        }
-
     }
 }
