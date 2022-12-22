@@ -220,6 +220,7 @@ public class Entity {
         gp.checker.checkObject(this, false);
         gp.checker.checkEntity(this, gp.npc);
         gp.checker.checkEntity(this, gp.mob);
+        gp.checker.checkEntity(this, gp.iTile);
         boolean contactPlayer = gp.checker.checkPlayer(this);
 
         if(this.type == type_mob && contactPlayer == true){

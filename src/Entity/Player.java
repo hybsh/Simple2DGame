@@ -145,6 +145,8 @@ public class Player extends Entity{
             int mobIndex = gp.checker.checkEntity(this, gp.mob);
             mobHits(mobIndex);
 
+            int iTileIndex = gp.checker.checkEntity(this, gp.iTile);
+
 
             gp.eHandler.checkEvent();
 
@@ -434,6 +436,10 @@ public class Player extends Entity{
             int mobIndex = gp.checker.checkEntity(this, gp.mob);
             damageMob(mobIndex,attack);
 
+            int iTileIndex = gp.checker.checkEntity(this,gp.iTile);
+            damageInteractivetile(iTileIndex);
+
+
             worldX = currentWorldX;
             worldY = currentWorldY;
             solidArea.width = solidAreaWidth;
@@ -459,6 +465,7 @@ public class Player extends Entity{
             attack = getAttack();
             defense = getDefense();
             life = maxLife;
+            mana = maxMana;
 
             gp.playSoundEffect(6);
             gp.gameState = gp.dialogueState;
@@ -486,6 +493,17 @@ public class Player extends Entity{
                 //later
             }
 
+        }
+    }
+    public void damageInteractivetile(int i){
+        if(i != 999 && gp.iTile[i].destructible == true
+                && gp.iTile[i].useCorrectItem(this) == true
+                && gp.iTile[i].invincible == false){
+            gp.iTile[i].life --;
+            gp.iTile[i].invincible = true;
+            if(gp.iTile[i].life == 0) {
+                gp.iTile[i] = gp.iTile[i].getDestroyedForm();
+            }
         }
     }
 }

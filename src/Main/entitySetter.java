@@ -1,6 +1,7 @@
 package Main;
 
 import Entity.NPC_Priest;
+import InteractiveTile.IT_Dry_Tree;
 import MOBZ.Slime;
 import Object.*;
 
@@ -76,5 +77,22 @@ public class entitySetter {
         gp.mob[4].worldX = gp.tileSize * 10;
         gp.mob[4].worldY = gp.tileSize * 10;
 
+    }
+    public void setInteractiveTiles(){
+        int i = 0;
+        gp.iTile[i] = new IT_Dry_Tree(gp,27,12);
+        i++;
+        gp.iTile[i] = new IT_Dry_Tree(gp,28,12);
+        i++;
+        gp.iTile[i] = new IT_Dry_Tree(gp,29,12);
+        i++;
+        gp.iTile[i] = new IT_Dry_Tree(gp,30,12);
+        i++;
+        gp.iTile[i] = new IT_Dry_Tree(gp,31,12);
+        i++;
+        gp.iTile[i] = new IT_Dry_Tree(gp,32,12);
+        i++;
+        gp.iTile[i] = new IT_Dry_Tree(gp,33,12);
+        i++;
     }
 }
