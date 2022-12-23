@@ -51,6 +51,9 @@ public class Player extends Entity{
 //        worldX = gp.tileSize * 10;
 //        worldY = gp.tileSize * 13;
 
+//        worldX = gp.tileSize * 12;
+//        worldY = gp.tileSize * 13;
+
         worldX = gp.tileSize * 23;
         worldY = gp.tileSize * 21;
         speed = 4;
@@ -249,9 +252,9 @@ public class Player extends Entity{
         if( index != 999) {
 
             //COINS
-            if (gp.obj[index].type == type_pickUpOnly) {
-                 gp.obj[index].use(this);
-                 gp.obj[index] = null;
+            if (gp.obj[gp.currentMap][index].type == type_pickUpOnly) {
+                 gp.obj[gp.currentMap][index].use(this);
+                 gp.obj[gp.currentMap][index] = null;
             }
 
             else {
@@ -259,15 +262,15 @@ public class Player extends Entity{
                 String text;
 
                 if (inventory.size() != maxInvSize) {
-                    inventory.add(gp.obj[index]);
+                    inventory.add(gp.obj[gp.currentMap][index]);
                     gp.playSoundEffect(2);
-                    text = "You got a " + gp.obj[index].name;
+                    text = "You got a " + gp.obj[gp.currentMap][index].name;
                 } else {
                     text = "Inventory full!";
                 }
 
                 gp.UI.addMessage(text);
-                gp.obj[index] = null;
+                gp.obj[gp.currentMap][index] = null;
 
             }
         }
@@ -379,17 +382,17 @@ public class Player extends Entity{
             if(i != 999){
                 attacKCanceled = true;
                 gp.gameState = gp.dialogueState;
-                gp.npc[i].speak();
+                gp.npc[gp.currentMap][i].speak();
             }
 
         }
     }
 
     public void mobHits(int i){
-        if (i != 999 && gp.mob[i].dying == false){
+        if (i != 999 && gp.mob[gp.currentMap][i].dying == false){
             if(invincible == false){
                 gp.playSoundEffect(5);
-                int damage = gp.mob[i].attack - defense;
+                int damage = gp.mob[gp.currentMap][i].attack - defense;
                 if(damage < 0){
                     damage = 0;
                 }
@@ -400,24 +403,24 @@ public class Player extends Entity{
     }
     public void damageMob(int i, int attack){
         if(i != 999){
-           if(gp.mob[i].invincible == false){
+           if(gp.mob[gp.currentMap][i].invincible == false){
                gp.playSoundEffect(3);
 
-               int damage = attack - gp.mob[i].defense;
+               int damage = attack - gp.mob[gp.currentMap][i].defense;
                if(damage < 0){
                    damage = 0;
                }
 
-               gp.mob[i].life -= damage;
+               gp.mob[gp.currentMap][i].life -= damage;
                gp.UI.addMessage(damage + "damage!");
-               gp.mob[i].invincible = true;
-               gp.mob[i].damageReaction();
+               gp.mob[gp.currentMap][i].invincible = true;
+               gp.mob[gp.currentMap][i].damageReaction();
 
-               if(gp.mob[i].life < 0){
-                   gp.mob[i].dying = true;
-                   gp.UI.addMessage("Killed a " + gp.mob[i].name + "!");
-                   gp.UI.addMessage("You recieved " + gp.mob[i].XP + " XP!" );
-                   XP += gp.mob[i].XP;
+               if(gp.mob[gp.currentMap][i].life < 0){
+                   gp.mob[gp.currentMap][i].dying = true;
+                   gp.UI.addMessage("Killed a " + gp.mob[gp.currentMap][i].name + "!");
+                   gp.UI.addMessage("You recieved " + gp.mob[gp.currentMap][i].XP + " XP!" );
+                   XP += gp.mob[gp.currentMap][i].XP;
                    checkLvlUp();
                }
            }
@@ -511,16 +514,16 @@ public class Player extends Entity{
         }
     }
     public void damageInteractiveTile(int i){
-        if(i != 999 && gp.iTile[i].destructible == true
-                && gp.iTile[i].useCorrectItem(this) == true
-                && gp.iTile[i].invincible == false){
-            gp.iTile[i].life --;
-            gp.iTile[i].invincible = true;
-            generateParticle(gp.iTile[i],gp.iTile[i]);
+        if(i != 999 && gp.iTile[gp.currentMap][i].destructible == true
+                && gp.iTile[gp.currentMap][i].useCorrectItem(this) == true
+                && gp.iTile[gp.currentMap][i].invincible == false){
+            gp.iTile[gp.currentMap][i].life --;
+            gp.iTile[gp.currentMap][i].invincible = true;
+            generateParticle(gp.iTile[gp.currentMap][i],gp.iTile[gp.currentMap][i]);
 
 
-            if(gp.iTile[i].life == 0) {
-                gp.iTile[i] = gp.iTile[i].getDestroyedForm();
+            if(gp.iTile[gp.currentMap][i].life == 0) {
+                gp.iTile[gp.currentMap][i] = gp.iTile[gp.currentMap][i].getDestroyedForm();
             }
         }
     }

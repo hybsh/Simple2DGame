@@ -24,6 +24,8 @@ public class gamePannel extends JPanel implements Runnable{
     public final int maxWorldRow = 50;
     public final int maxScreenCol = 20;
     public final int maxScreenRow = 12;
+    public int maxMap = 10;
+    public int currentMap = 0;
     public final int screenWidth = tileSize * maxScreenCol;
     public final int screenHeight = tileSize * maxScreenRow;
 
@@ -44,10 +46,10 @@ public class gamePannel extends JPanel implements Runnable{
     public collisionCheck checker = new collisionCheck(this);
     public entitySetter eSetter = new entitySetter(this);
     public Player player = new Player(this, keyH);
-    public Entity obj[] = new Entity[20];
-    public Entity npc[] = new Entity[10];
-    public Entity mob[] = new Entity[20];
-    public Interactive_Tile iTile[] = new Interactive_Tile[50];
+    public Entity obj[][] = new Entity[maxMap][20];
+    public Entity npc[][] = new Entity[maxMap][10];
+    public Entity mob[][] = new Entity[maxMap][20];
+    public Interactive_Tile iTile[][] = new Interactive_Tile[maxMap][50];
     ArrayList<Entity> entities = new ArrayList<>();
     public ArrayList<Entity> projectileList = new ArrayList<>();
     public ArrayList<Entity> particleList = new ArrayList<>();
@@ -144,19 +146,19 @@ public class gamePannel extends JPanel implements Runnable{
 
         if(gameState == playState) {
             player.update();
-            for(int i = 0; i< npc.length; i++){
-                if(npc[i] != null){
-                    npc[i].update();
+            for(int i = 0; i< npc[1].length; i++){
+                if(npc[currentMap][i] != null){
+                    npc[currentMap][i].update();
                 }
             }
-            for(int i=0; i< mob.length; i++){
-                if(mob[i] != null){
-                    if(mob[i].alive == true && mob[i].dying == false) {
-                        mob[i].update();
+            for(int i=0; i< mob[1].length; i++){
+                if(mob[currentMap][i] != null){
+                    if(mob[currentMap][i].alive == true && mob[currentMap][i].dying == false) {
+                        mob[currentMap][i].update();
                     }
-                    if(mob[i].alive == false){
-                        mob[i].checkDrop();
-                        mob[i] = null;
+                    if(mob[currentMap][i].alive == false){
+                        mob[currentMap][i].checkDrop();
+                        mob[currentMap][i] = null;
                     }
                 }
             }
@@ -180,9 +182,9 @@ public class gamePannel extends JPanel implements Runnable{
                     }
                 }
             }
-           for(int i = 0; i< iTile.length; i++){
-               if(iTile[i] != null){
-                   iTile[i].update();
+           for(int i = 0; i< iTile[1].length; i++){
+               if(iTile[currentMap][i] != null){
+                   iTile[currentMap][i].update();
                }
            }
         }
@@ -204,26 +206,26 @@ public class gamePannel extends JPanel implements Runnable{
         else{
             tileM.draw(g2);
 
-            for(int i = 0; i < iTile.length; i++){
-                if(iTile[i] != null){
-                    iTile[i].draw(g2);
+            for(int i = 0; i < iTile[1].length; i++){
+                if(iTile[currentMap][i] != null){
+                    iTile[currentMap][i].draw(g2);
                 }
             }
 
             entities.add(player);
-            for(int i=0; i< npc.length;i++){
-                if(npc[i] != null){
-                    entities.add(npc[i]);
+            for(int i=0; i< npc[1].length;i++){
+                if(npc[currentMap][i] != null){
+                    entities.add(npc[currentMap][i]);
                 }
             }
-            for(int i=0; i<obj.length; i++){
-                if(obj[i] != null){
-                    entities.add(obj[i]);
+            for(int i=0; i<obj[1].length; i++){
+                if(obj[currentMap][i] != null){
+                    entities.add(obj[currentMap][i]);
                 }
             }
-            for(int i=0; i<mob.length; i++){
-                if(mob[i] != null){
-                    entities.add(mob[i]);
+            for(int i=0; i<mob[1].length; i++){
+                if(mob[currentMap][i] != null){
+                    entities.add(mob[currentMap][i]);
                 }
             }
             for(int i=0; i<projectileList.size(); i++){

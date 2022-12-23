@@ -23,7 +23,7 @@ public class Projectile extends Entity{
             int mobIndex = gp.checker.checkEntity(this,gp.mob);
             if(mobIndex != 999){
                 gp.player.damageMob(mobIndex, attack);
-                generateParticle(user.projectile, gp.mob[mobIndex]);
+                generateParticle(user.projectile, gp.mob[gp.currentMap][mobIndex]);
                 alive = false;
             }
         }
