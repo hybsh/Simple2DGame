@@ -126,6 +126,7 @@ public class keyHandler implements KeyListener {
 
             }
             if(gp.UI.commandNum == 2){
+                Main.login.saveConfigToDB(gp.music.volumeScale,gp.sound.volumeScale);
                 System.exit(0);
             }
         }
