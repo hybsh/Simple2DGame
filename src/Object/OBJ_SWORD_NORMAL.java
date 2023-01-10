@@ -14,5 +14,6 @@ public class OBJ_SWORD_NORMAL extends Entity {
         attackArea.height = 36;
         attackVal = 1;
         description = "[" + name + "]\nAn ancient sword";
+        knockbackPower = 2;
     }
 }

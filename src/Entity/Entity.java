@@ -78,6 +78,7 @@ public class Entity {
     public int useCost;
     public int value;
     public int price = 20;
+    public int knockbackPower = 0;
 
 
     //TYPES
