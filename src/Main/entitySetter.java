@@ -1,5 +1,6 @@
 package Main;
 
+import Entity.NPC_Merchant;
 import Entity.NPC_Priest;
 import InteractiveTile.IT_Dry_Tree;
 import MOBZ.Slime;
@@ -58,6 +59,11 @@ public class entitySetter {
         gp.npc[mapNum][1] = new NPC_Priest(gp);
         gp.npc[mapNum][1].worldX = gp.tileSize * 9;
         gp.npc[mapNum][1].worldY = gp.tileSize * 10;
+
+        mapNum = 1;
+        gp.npc[mapNum][0] = new NPC_Merchant(gp);
+        gp.npc[mapNum][0].worldX = gp.tileSize * 12;
+        gp.npc[mapNum][0].worldY = gp.tileSize * 7;
     }
     public void setMobz(){
         int mapNum = 0;

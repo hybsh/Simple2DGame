@@ -15,8 +15,7 @@ public class Player extends Entity{
     public final int screenX;
     public final int screenY;
     public boolean attacKCanceled = false;
-    public ArrayList<Entity> inventory = new ArrayList<>();
-    public final int maxInvSize = 20;
+
     public Player(gamePannel gp, keyHandler keyH){
 
         super(gp);

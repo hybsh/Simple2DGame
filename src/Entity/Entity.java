@@ -7,6 +7,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Entity {
     gamePannel gp;
@@ -66,6 +67,8 @@ public class Entity {
 
 
     //ITEM ATTRIBUTES
+    public ArrayList<Entity> inventory = new ArrayList<>();
+    public final int maxInvSize = 20;
     public int attackVal;
     public int defenseVal;
     public String description = "";
