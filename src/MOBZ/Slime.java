@@ -13,7 +13,8 @@ public class Slime extends Entity {
         this.gp = gp;
         type = type_mob;
         name = "Slime";
-        speed = 1;
+        defaultSpeed = 1;
+        speed = defaultSpeed;
         maxLife = 3;
         life = maxLife;
         attack = 5;

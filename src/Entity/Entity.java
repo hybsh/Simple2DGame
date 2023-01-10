@@ -33,6 +33,7 @@ public class Entity {
     public boolean alive = true;
     public boolean dying = false;
     public boolean hpBarOn = false;
+    public boolean knockback = false;
 
 
     //COUNTERS
@@ -42,12 +43,14 @@ public class Entity {
     public int dyingCounter = 0;
     public int hpBarCounter = 0;
     public int shotAvailableCounter =0;
+    public int knockbackCounter = 0;
 
 
 
     //ENTITY ATTRIBUTES
 
     public String name;
+    public int defaultSpeed;
     public int speed;
     public int maxLife;
     public int life;
@@ -217,42 +220,84 @@ public class Entity {
         }
     }
     public void update(){
-        setAction();
 
-        collisonOn = false;
-        gp.checker.checkTile(this);
-        gp.checker.checkObject(this, false);
-        gp.checker.checkEntity(this, gp.npc);
-        gp.checker.checkEntity(this, gp.mob);
-        gp.checker.checkEntity(this, gp.iTile);
-        boolean contactPlayer = gp.checker.checkPlayer(this);
+        if(knockback == true){
 
-        if(this.type == type_mob && contactPlayer == true){
-            damagePlayer(attack);
+            gp.checker.checkTile(this);
+            gp.checker.checkObject(this, false);
+            gp.checker.checkEntity(this, gp.npc);
+            gp.checker.checkEntity(this, gp.mob);
+            gp.checker.checkEntity(this, gp.iTile);
+
+            if(collisonOn == true){
+                knockbackCounter = 0;
+                knockback = false;
+                speed = defaultSpeed;
+            }
+            else if(collisonOn == false){
+                switch(gp.player.direction){
+                    case "up": {
+                        worldY -= speed;
+                        break;
+                    }
+                    case "down": {
+                        worldY += speed;
+                        break;
+                    }
+                    case "left": {
+                        worldX -= speed;
+                        break;
+                    }
+                    case "right": {
+                        worldX += speed;
+                        break;
+                    }
+                }
+            }
+            knockbackCounter++;
+            if(knockbackCounter == 10){
+                knockback = false;
+                knockbackCounter = 0;
+                speed = defaultSpeed;
+            }
         }
+        else {
+            setAction();
+
+            collisonOn = false;
+            gp.checker.checkTile(this);
+            gp.checker.checkObject(this, false);
+            gp.checker.checkEntity(this, gp.npc);
+            gp.checker.checkEntity(this, gp.mob);
+            gp.checker.checkEntity(this, gp.iTile);
+            boolean contactPlayer = gp.checker.checkPlayer(this);
+
+            if (this.type == type_mob && contactPlayer == true) {
+                damagePlayer(attack);
+            }
 
 
-        if(collisonOn == false){
-            switch(direction){
-                case "up":{
-                    worldY-=speed;
-                    break;
-                }
-                case "down":{
-                    worldY+=speed;
-                    break;
-                }
-                case "left":{
-                    worldX -= speed;
-                    break;
-                }
-                case "right":{
-                    worldX += speed;
-                    break;
+            if (collisonOn == false) {
+                switch (direction) {
+                    case "up": {
+                        worldY -= speed;
+                        break;
+                    }
+                    case "down": {
+                        worldY += speed;
+                        break;
+                    }
+                    case "left": {
+                        worldX -= speed;
+                        break;
+                    }
+                    case "right": {
+                        worldX += speed;
+                        break;
+                    }
                 }
             }
         }
-
 
         spriteCounter++;
         if(spriteCounter > 10){

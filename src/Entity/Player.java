@@ -55,7 +55,8 @@ public class Player extends Entity{
 
         worldX = gp.tileSize * 23;
         worldY = gp.tileSize * 21;
-        speed = 4;
+        defaultSpeed = 4;
+        speed = defaultSpeed;
         direction = "down";
 
         level = 1;
@@ -412,6 +413,8 @@ public class Player extends Entity{
            if(gp.mob[gp.currentMap][i].invincible == false){
                gp.playSoundEffect(3);
 
+               knockback(gp.mob[gp.currentMap][i]);
+
                int damage = attack - gp.mob[gp.currentMap][i].defense;
                if(damage < 0){
                    damage = 0;
@@ -543,5 +546,10 @@ public class Player extends Entity{
                 gp.iTile[gp.currentMap][i] = gp.iTile[gp.currentMap][i].getDestroyedForm();
             }
         }
+    }
+    public void knockback(Entity entity){
+        entity.direction = direction;
+        entity.speed += 10;
+        entity.knockback = true;
     }
 }
