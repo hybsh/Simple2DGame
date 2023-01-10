@@ -12,6 +12,7 @@ public class OBJ_Boots extends Entity {
         super(gp);
         name = "Boots";
         down1 = prepImg("/Objects/boots", gp.tileSize, gp.tileSize);
+        price = 20;
 
     }
 }

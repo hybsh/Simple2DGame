@@ -203,21 +203,11 @@ public class keyHandler implements KeyListener {
         if(code == KeyEvent.VK_C || code == KeyEvent.VK_I || code == KeyEvent.VK_TAB){
             gp.gameState = gp.playState;
         }
-        if(code == KeyEvent.VK_UP){
-            gp.UI.slotRow --;
-        }
-        if(code == KeyEvent.VK_DOWN){
-            gp.UI.slotRow ++;
-        }
-        if(code == KeyEvent.VK_LEFT){
-            gp.UI.slotCol --;
-        }
-        if(code == KeyEvent.VK_RIGHT){
-            gp.UI.slotCol ++;
-        }
         if(code == KeyEvent.VK_ENTER){
-            gp.player.selectItem();
+            if(gp.UI.playerSlotRow >= 0 && gp.UI.playerSlotRow < 5)
+                gp.player.selectItem();
         }
+        playerInv(code);
     }
     public void gameOverState(int code){
         if(code == KeyEvent.VK_UP){
@@ -266,6 +256,53 @@ public class keyHandler implements KeyListener {
                     gp.UI.commandNum = 0;
                 }
             }
+        }
+        if(gp.UI.subState == 1){
+            npcInv(code);
+            if(code == KeyEvent.VK_ESCAPE)
+                gp.UI.subState = 0;
+        }
+        if(gp.UI.subState == 2){
+            playerInv(code);
+            if(code == KeyEvent.VK_ESCAPE)
+                gp.UI.subState = 0;
+        }
+    }
+    public void playerInv(int code){
+        if(code == KeyEvent.VK_UP){
+            if(gp.UI.playerSlotRow != 0)
+                gp.UI.playerSlotRow --;
+        }
+        if(code == KeyEvent.VK_DOWN){
+            if(gp.UI.playerSlotRow != 3)
+                gp.UI.playerSlotRow ++;
+        }
+        if(code == KeyEvent.VK_LEFT){
+            if(gp.UI.playerSlotCol != 0)
+                gp.UI.playerSlotCol --;
+        }
+        if(code == KeyEvent.VK_RIGHT){
+            if(gp.UI.playerSlotCol != 4)
+                gp.UI.playerSlotCol ++;
+        }
+    }
+
+    public void npcInv(int code){
+        if(code == KeyEvent.VK_UP){
+            if(gp.UI.npcSlotRow != 0)
+                gp.UI.npcSlotRow --;
+        }
+        if(code == KeyEvent.VK_DOWN){
+            if(gp.UI.npcSlotRow != 3)
+                gp.UI.npcSlotRow ++;
+        }
+        if(code == KeyEvent.VK_LEFT){
+            if(gp.UI.npcSlotCol != 0)
+                gp.UI.npcSlotCol --;
+        }
+        if(code == KeyEvent.VK_RIGHT){
+            if(gp.UI.npcSlotCol != 4)
+                gp.UI.npcSlotCol ++;
         }
     }
 

@@ -67,7 +67,7 @@ public class Player extends Entity{
         dexterity =1;
         XP = 0;
         nextLvlXP = 10;
-        money = 0;
+        money = 500;
         currentWeapon = new OBJ_SWORD_NORMAL(gp);
         currentShield = new OBJ_SHIELD_NORMAL(gp);
         projectile = new OBJ_Fireball(gp);
@@ -492,7 +492,8 @@ public class Player extends Entity{
         }
     }
     public void selectItem(){
-        int itemIndex = gp.UI.getItemIndexFromInv();
+        int itemIndex = gp.UI.getItemIndexFromInv(gp.UI.playerSlotCol,gp.UI.playerSlotRow);
+        System.out.println("Item index : " + itemIndex);
         if(itemIndex < inventory.size()){
             Entity selectedItem = inventory.get(itemIndex);
             if(selectedItem.type == type_sword || selectedItem.type == type_axe){

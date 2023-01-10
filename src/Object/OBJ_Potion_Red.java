@@ -13,6 +13,7 @@ public class OBJ_Potion_Red extends Entity {
         value = 2;
         down1 = prepImg("/Objects/potion_red", gp.tileSize,gp.tileSize);
         description = "Drink to heal noob";
+        price = 20;
     }
     public void use(Entity entity){
         gp.gameState = gp.dialogueState;
