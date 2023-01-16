@@ -1,9 +1,10 @@
 package InteractiveTile;
 
 import Entity.Entity;
+import Interfaces.Updateable;
 import Main.gamePannel;
 
-public class Interactive_Tile extends Entity {
+public class Interactive_Tile extends Entity implements Updateable {
     gamePannel gp;
     public boolean destructible = false;
     public Interactive_Tile(gamePannel gp , int col, int row) {

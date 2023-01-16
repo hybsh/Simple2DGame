@@ -1,8 +1,9 @@
 package Entity;
 
+import Interfaces.Updateable;
 import Main.gamePannel;
 
-public class Projectile extends Entity{
+public class Projectile extends Entity implements Updateable{
     Entity user;
 
     public Projectile(gamePannel gp) {

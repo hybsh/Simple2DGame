@@ -1,12 +1,13 @@
 package Object;
 
+import Interfaces.Useable;
 import Main.gamePannel;
 
 import javax.imageio.ImageIO;
 import java.io.IOException;
 import Entity.Entity;
 
-public class OBJ_Heart extends Entity{
+public class OBJ_Heart extends Entity implements Useable {
     gamePannel gp;
     public OBJ_Heart(gamePannel gp){
         super(gp);

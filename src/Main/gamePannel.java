@@ -5,6 +5,7 @@ import Entity.Entity;
 import Entity.Player;
 import InteractiveTile.Interactive_Tile;
 import Tile.TileManager;
+import Interfaces.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class gamePannel extends JPanel implements Runnable{
+public class gamePannel extends JPanel implements Runnable,Updateable{
     int FPS = 60;
     final int originalTileSize = 16;
     final int scale=3;
@@ -34,7 +35,7 @@ public class gamePannel extends JPanel implements Runnable{
     BufferedImage tempScreen;
     Graphics2D g2;
 
-    TileManager tileM = new TileManager(this);
+    public TileManager tileM = new TileManager(this);
 
     public keyHandler keyH = new keyHandler(this);
     Sound sound = new Sound();

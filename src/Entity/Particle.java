@@ -1,10 +1,12 @@
 package Entity;
 
+import Interfaces.Drawable;
+import Interfaces.Updateable;
 import Main.gamePannel;
 
 import java.awt.*;
 
-public class Particle extends Entity{
+public class Particle extends Entity implements Updateable, Drawable {
 
     Entity generator;
     Color color;

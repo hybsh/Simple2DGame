@@ -1,9 +1,10 @@
 package Object;
 
 import Entity.Entity;
+import Interfaces.Useable;
 import Main.gamePannel;
 
-public class OBJ_Gold_Coin extends Entity {
+public class OBJ_Gold_Coin extends Entity implements Useable {
     gamePannel gp;
     public OBJ_Gold_Coin(gamePannel gp) {
         super(gp);

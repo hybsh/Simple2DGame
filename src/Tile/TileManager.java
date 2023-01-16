@@ -1,5 +1,6 @@
 package Tile;
 
+import Interfaces.Drawable;
 import Main.gamePannel;
 import Main.utilities;
 
@@ -10,7 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class TileManager {
+public class TileManager implements Drawable {
 
     gamePannel gp;
     public Tile[] tile;

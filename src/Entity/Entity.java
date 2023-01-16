@@ -1,5 +1,7 @@
 package Entity;
 
+import Interfaces.Drawable;
+import Interfaces.Updateable;
 import Main.gamePannel;
 import Main.utilities;
 
@@ -9,7 +11,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Entity {
+public class Entity implements Updateable, Drawable {
     gamePannel gp;
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
     public  BufferedImage attackup1,attackup2,attackdown1,attackdown2,attackleft1,attackleft2,attackright1,attackright2;

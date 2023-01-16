@@ -1,9 +1,10 @@
 package Object;
 
 import Entity.Entity;
+import Interfaces.Useable;
 import Main.gamePannel;
 
-public class OBJ_Potion_Red extends Entity {
+public class OBJ_Potion_Red extends Entity implements Useable {
     gamePannel gp;
     public OBJ_Potion_Red(gamePannel gp) {
         super(gp);

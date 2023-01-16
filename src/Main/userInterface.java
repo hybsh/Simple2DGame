@@ -1,6 +1,7 @@
 package Main;
 
 import Entity.Entity;
+import Interfaces.Drawable;
 import Object.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -9,7 +10,7 @@ import java.io.InputStream;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-public class userInterface {
+public class userInterface implements Drawable {
     gamePannel gp;
     Graphics2D g2;
     Font purisaB;
