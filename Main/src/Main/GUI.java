@@ -157,7 +157,7 @@ public class GUI implements ActionListener {
                 possibleInsert = false;
                 throw new customExceptions.tooShortUser();
             }
-            if(password.length() < 4){
+            if(passwordUser.length() < 4){
                 possibleInsert = false;
                 throw new customExceptions.tooShortPass();
             }
