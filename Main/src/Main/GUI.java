@@ -82,15 +82,19 @@ public class GUI implements ActionListener {
         }
 
         if(buttonText.equals("Login")){
-            System.out.println(validateLogin(user,password));
+            userText.setText("");
+            passwordText.setText("");
            if(validateLogin(user,password) == true){
                loadConfigFromDB(user);
                getIDfromUser(user);
                getRolefromUser(user);
                Main.startGame(startArg,currentUserRole);
+
            }
         }
         else if(buttonText.equals("Register")){
+            userText.setText("");
+            passwordText.setText("");
             insertToDb(user,password);
         }
 
@@ -124,6 +128,7 @@ public class GUI implements ActionListener {
         for(int j = 0; j<i;j++){
             if(existingUsers[j].equals(user)){
                 canInsert = false;
+                throw new customExceptions.userAlreadyExisting();
             }
         }
 
@@ -145,6 +150,17 @@ public class GUI implements ActionListener {
         String passwordToInsert = "'" + passwordUser + "'";
         String role = "'user'";
         try{
+            if(user.equals("") || passwordUser.equals("|")){
+                throw new customExceptions.userOrPassEmpty();
+            }
+            if(user.length() < 4){
+                possibleInsert = false;
+                throw new customExceptions.tooShortUser();
+            }
+            if(password.length() < 4){
+                possibleInsert = false;
+                throw new customExceptions.tooShortPass();
+            }
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection(url,username,password);
             String query1 = "INSERT INTO `users` " + "VALUES (null," +userToInsert+","+passwordToInsert+","+role+");";
@@ -171,6 +187,9 @@ public class GUI implements ActionListener {
             Statement stmt = connection.createStatement();
             String query = "SELECT password FROM `users` WHERE userName='"+user+"';";
             ResultSet rs = stmt.executeQuery(query);
+            if(user.equals("") || password.equals("")){
+                throw new customExceptions.userOrPassEmpty();
+            }
             while (rs.next()){
                 extractedPass = rs.getString(1);
             }

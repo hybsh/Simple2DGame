@@ -24,12 +24,8 @@ public class customExceptions extends Exception{
             super("This username already exists");
         }
     }
-
-
-    public static class noUserFound extends customExceptions{
-        public noUserFound(){
-            super("No username found to match yours");
-        }
+    public static class userOrPassEmpty extends customExceptions{
+        public  userOrPassEmpty(){super("User or password are empty");}
     }
 
 

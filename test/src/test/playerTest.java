@@ -11,9 +11,9 @@ public class playerTest {
 
     @Test
     public void testPlayerConstructor(){
-        gamePannel gp = new gamePannel();
+        gamePannel gp = new gamePannel("user");
         keyHandler keyH = new keyHandler(gp);
-        Player test = new Player(gp,keyH);
+        Player test = new Player(gp,keyH,"user");
 
         assertEquals(1,test.level);
         assertEquals(6,test.life);
@@ -22,9 +22,9 @@ public class playerTest {
     }
     @Test
     public void testLvlUp(){
-        gamePannel gp = new gamePannel();
+        gamePannel gp = new gamePannel("user");
         keyHandler keyH = new keyHandler(gp);
-        Player test = new Player(gp,keyH);
+        Player test = new Player(gp,keyH,"user");
         test.XP += 12;
         test.checkLvlUp();
         assertEquals(2,test.level);
@@ -32,9 +32,9 @@ public class playerTest {
 
     @Test
     public void testGetAttack(){
-        gamePannel gp = new gamePannel();
+        gamePannel gp = new gamePannel("user");
         keyHandler keyH = new keyHandler(gp);
-        Player test = new Player(gp,keyH);
+        Player test = new Player(gp,keyH,"user");
         assertEquals(1,test.attack);
         test.XP += 12;
         test.checkLvlUp();

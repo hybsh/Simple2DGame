@@ -10,7 +10,7 @@ public class userInterfaceTest {
 
     @Test
     public void testIndexFromInv(){
-        gamePannel gp = new gamePannel();
+        gamePannel gp = new gamePannel("user");
         userInterface ui = new userInterface(gp);
 
         int ind = ui.getItemIndexFromInv(2,3);

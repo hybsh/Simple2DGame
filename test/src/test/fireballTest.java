@@ -10,10 +10,10 @@ public class fireballTest {
 
     @Test
     public void testHasMana() {
-        gamePannel gp = new gamePannel();
+        gamePannel gp = new gamePannel("user");
         keyHandler keyH = new keyHandler(gp);
         OBJ_Fireball test = new OBJ_Fireball(gp);
-        Player testP = new Player(gp, keyH);
+        Player testP = new Player(gp, keyH,"user");
         gp.player = testP;
 
         boolean rez = test.hasMana(testP);

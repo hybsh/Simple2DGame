@@ -9,9 +9,9 @@ public class damagePlayerTest {
 
     @Test
     public void testPlayerDamage(){
-        gamePannel gp = new gamePannel();
+        gamePannel gp = new gamePannel("user");
         keyHandler keyH = new keyHandler(gp);
-        Player test = new Player(gp,keyH);
+        Player test = new Player(gp,keyH,"user");
         gp.player = test;
         assertEquals(6,test.life);
         test.damagePlayer(2);

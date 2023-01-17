@@ -12,7 +12,7 @@ public class merchantInvTest {
     @Test
     public void testInv(){
 
-        gamePannel gp = new gamePannel();
+        gamePannel gp = new gamePannel("user");
         NPC_Merchant test = new NPC_Merchant(gp);
         test.setItems();
         assertEquals(6,test.inventory.size());

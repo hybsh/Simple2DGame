@@ -12,9 +12,9 @@ public class testPlayerImg {
 
     @Test
     public void testPlayerImg(){
-        gamePannel gp = new gamePannel();
+        gamePannel gp = new gamePannel("user");
         keyHandler kH = new keyHandler(gp);
-        Player test = new Player(gp,kH);
+        Player test = new Player(gp,kH,"user");
 
         test.getPlayerImage();
         Assert.assertTrue(test.up1 instanceof BufferedImage);

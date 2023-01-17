@@ -11,7 +11,7 @@ public class slimeTest {
 
     @Test
     public void testSlimeConstructor(){
-        gamePannel gp = new gamePannel();
+        gamePannel gp = new gamePannel("user");
         Slime test = new Slime(gp);
 
         assertEquals("Slime",test.name);
@@ -23,10 +23,10 @@ public class slimeTest {
     @Test
     public void testDamageReaction(){
 
-        gamePannel gp = new gamePannel();
+        gamePannel gp = new gamePannel("user");
         Slime test = new Slime(gp);
         keyHandler keyH = new keyHandler(gp);
-        Player testP = new Player(gp,keyH);
+        Player testP = new Player(gp,keyH,"user");
         gp.player = testP;
         test.damageReaction();
         assertEquals("down",test.direction);

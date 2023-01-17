@@ -12,9 +12,9 @@ public class pickUpCoinObjectsTest {
     @Test
     public void testPickUpObject(){
 
-        gamePannel gp = new gamePannel();
+        gamePannel gp = new gamePannel("user");
         keyHandler keyH = new keyHandler(gp);
-        Player test = new Player(gp,keyH);
+        Player test = new Player(gp,keyH,"user");
         gp.player = test;
 
         OBJ_Heart testHeart = new OBJ_Heart(gp);
