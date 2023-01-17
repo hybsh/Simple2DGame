@@ -332,7 +332,9 @@ public class Entity implements Updateable, Drawable {
                 damage = 0;
             }
 
+
             gp.player.life -= damage;
+            System.out.println(gp.player.life);
             gp.player.invincible = true;
         }
     }

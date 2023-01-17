@@ -54,7 +54,7 @@ public class TileManager implements Drawable {
                 }
             }
             br.close();
-        }catch (Exception e){
+        }catch (IOException e){
 
         }
     }
