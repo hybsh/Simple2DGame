@@ -12,14 +12,14 @@ public class Main {
             login = new GUI();
             login.GUI(args[0]);
         }
-        public static void startGame(String arg){
+        public static void startGame(String arg, String role){
             window = new JFrame();
             window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             window.setResizable(false);
             window.setTitle("Yay");
             //window.setUndecorated(true);
 
-            gamePannel gamePannel = new gamePannel();
+            gamePannel gamePannel = new gamePannel(role);
             window.add(gamePannel);
 
             gamePannel.config.loadConfig();
@@ -28,7 +28,7 @@ public class Main {
 
             window.setLocationRelativeTo(null);
             window.setVisible(true);
-            gamePannel.initGame(arg);
+            gamePannel.initGame(arg,role);
             gamePannel.startThread();
         }
     }

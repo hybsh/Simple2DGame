@@ -46,7 +46,7 @@ public class gamePannel extends JPanel implements Runnable,Updateable{
     Thread gameThread;
     public collisionCheck checker = new collisionCheck(this);
     public entitySetter eSetter = new entitySetter(this);
-    public Player player = new Player(this, keyH);
+    public Player player;
     public Entity obj[][] = new Entity[maxMap][20];
     public Entity npc[][] = new Entity[maxMap][10];
     public Entity mob[][] = new Entity[maxMap][20];
@@ -66,25 +66,29 @@ public class gamePannel extends JPanel implements Runnable,Updateable{
     public final int gameOverState = 6;
     public final int transitionState = 7;
     public final int tradeState = 8;
+    public String role = "";
 
     //Player default position
     int playerX = 100;
     int playerY = 100;
     int playerSpeed=4;
-    public gamePannel(){
+    public gamePannel(String role){
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
         this.setFocusable(true);
+        this.role = role;
+        this.player = new Player(this,keyH,role);
     }
-    public void initGame(String screenType){
+    public void initGame(String screenType,String role){
         System.out.println(screenType);
         eSetter.setObject();
         eSetter.setNPC();
         eSetter.setMobz();
         eSetter.setInteractiveTiles();
         gameState = startState;
+        this.role = role;
 
         tempScreen = new BufferedImage(screenWidth,screenHeight,BufferedImage.TYPE_INT_ARGB);
         g2 =  (Graphics2D) tempScreen.getGraphics();

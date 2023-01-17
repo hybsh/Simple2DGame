@@ -21,6 +21,7 @@ public class GUI implements ActionListener {
     private static String startArg;
 
     public static int currentUserId = 0;
+    public static String currentUserRole = "";
 
     public void GUI(String startArg){
         this.startArg = startArg;
@@ -85,7 +86,8 @@ public class GUI implements ActionListener {
            if(validateLogin(user,password) == true){
                loadConfigFromDB(user);
                getIDfromUser(user);
-               Main.startGame(startArg);
+               getRolefromUser(user);
+               Main.startGame(startArg,currentUserRole);
            }
         }
         else if(buttonText.equals("Register")){
@@ -141,10 +143,11 @@ public class GUI implements ActionListener {
         possibleInsert = checkIfUserAlreadyExists(user);
         String userToInsert ="'"+user+"'";
         String passwordToInsert = "'" + passwordUser + "'";
+        String role = "'user'";
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection(url,username,password);
-            String query1 = "INSERT INTO `users` " + "VALUES (null," +userToInsert+","+passwordToInsert+");";
+            String query1 = "INSERT INTO `users` " + "VALUES (null," +userToInsert+","+passwordToInsert+","+role+");";
             String query2 = "INSERT INTO `config`" + "VALUES (null,3,3);";
             if(possibleInsert == true) {
                 PreparedStatement stmt = connection.prepareStatement(query1);
@@ -189,6 +192,19 @@ public class GUI implements ActionListener {
             ResultSet rs = stmt.executeQuery(query);
             while(rs.next()){
                 currentUserId = Integer.parseInt(rs.getString(1));
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+    public void getRolefromUser(String user){
+        try{
+            Connection connection = connectToDB();
+            Statement stmt = connection.createStatement();
+            String query = "SELECT role FROM `users` WHERE userName='"+user+"';";
+            ResultSet rs = stmt.executeQuery(query);
+            while(rs.next()){
+                currentUserRole = rs.getString(1);
             }
         }catch (Exception e){
             System.out.println(e);

@@ -17,11 +17,13 @@ public class Player extends Entity implements Updateable, Drawable {
     public final int screenX;
     public final int screenY;
     public boolean attacKCanceled = false;
+    public String role = "";
 
-    public Player(gamePannel gp, keyHandler keyH){
+    public Player(gamePannel gp, keyHandler keyH,String role){
 
         super(gp);
         this.keyH = keyH;
+        this.role = role;
 
         screenX = gp.screenWidth/2 - (gp.tileSize/2);
         screenY = gp.screenHeight/2 - (gp.tileSize/2);
@@ -70,12 +72,18 @@ public class Player extends Entity implements Updateable, Drawable {
         dexterity =1;
         XP = 0;
         nextLvlXP = 10;
-        money = 500;
+        money = 0;
         currentWeapon = new OBJ_SWORD_NORMAL(gp);
         currentShield = new OBJ_SHIELD_NORMAL(gp);
         projectile = new OBJ_Fireball(gp);
         attack = getAttack();
         defense = getDefense();
+        System.out.println("Role in default values is " + this.role);
+        if(this.role.equals("admin")){
+            defense = 999;
+            money = 999;
+            attack = 999;
+        }
     }
 
     public void setItems(){
