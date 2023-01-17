@@ -10,6 +10,6 @@ public class OBJ_Shield_Blue extends Entity {
         name = "Blue shield";
         down1 = prepImg("/Objects/shield_blue",gp.tileSize,gp.tileSize);
         defenseVal = 2;
-        description ="Best shield EUNE no cap";
+        description ="Best shield in the game";
     }
 }

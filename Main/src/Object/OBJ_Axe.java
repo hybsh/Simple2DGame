@@ -12,7 +12,7 @@ public class OBJ_Axe extends Entity {
         attackVal = 2;
         attackArea.width = 30;
         attackArea.height = 30;
-        description = "Dogshit axe \nFind better lmao \nBetter than sword tho";
+        description = "Really bad axe \nTry to find a better one \nBetter than sword tho";
         price = 50;
         knockbackPower = 8;
     }

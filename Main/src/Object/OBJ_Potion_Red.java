@@ -13,12 +13,12 @@ public class OBJ_Potion_Red extends Entity implements Useable {
         name = "Red Potion";
         value = 2;
         down1 = prepImg("/Objects/potion_red", gp.tileSize,gp.tileSize);
-        description = "Drink to heal noob";
+        description = "This might heal you";
         price = 20;
     }
     public void use(Entity entity){
         gp.gameState = gp.dialogueState;
-        gp.UI.currentDialogue = "You drink the potion! \n Good job you cunt!";
+        gp.UI.currentDialogue = "You drink the potion! \n Luckily you are not dead!";
         entity.life += value;
     }
 }

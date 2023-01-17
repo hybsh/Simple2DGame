@@ -11,7 +11,7 @@ public class OBJ_SHIELD_NORMAL extends Entity {
         type = type_shield;
         name = "Normal Shield";
         down1 = prepImg("/Objects/shield_wood",gp.tileSize,gp.tileSize);
-        description = "Parry with dis bozo!";
+        description = "Worst shield ever";
         defenseVal = 1;
     }
 }
