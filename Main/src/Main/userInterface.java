@@ -17,7 +17,7 @@ public class userInterface implements Drawable {
     BufferedImage heart_full,heart_half,heart_empty,crystal_full,crystal_blank,coin;
     public boolean messageOn = false;
     public boolean finished = false;
-    ArrayList<String> message = new ArrayList<>();
+    public ArrayList<String> message = new ArrayList<>();
     ArrayList<Integer> messageCounter = new ArrayList<>();
     public String currentDialogue = "";
     public int commandNum = 0;

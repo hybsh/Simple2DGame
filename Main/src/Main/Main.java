@@ -10,16 +10,16 @@ public class Main {
     public static int validateLogin = 0;
     public static void main(String[] args) {
             login = new GUI();
-            login.GUI(args[0]);
+            login.GUI(args[0],args[1]);
         }
-        public static void startGame(String arg, String role){
+        public static void startGame(String arg, String role,String level){
             window = new JFrame();
             window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             window.setResizable(false);
             window.setTitle("Yay");
             //window.setUndecorated(true);
 
-            gamePannel gamePannel = new gamePannel(role);
+            gamePannel gamePannel = new gamePannel(role,level);
             window.add(gamePannel);
 
             gamePannel.config.loadConfig();

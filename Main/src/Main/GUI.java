@@ -22,9 +22,11 @@ public class GUI implements ActionListener {
 
     public static int currentUserId = 0;
     public static String currentUserRole = "";
+    public static String level;
 
-    public void GUI(String startArg){
+    public void GUI(String startArg,String level){
         this.startArg = startArg;
+        this.level = level;
         JFrame frame = new JFrame();
         frame.setSize(350,200);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -88,7 +90,7 @@ public class GUI implements ActionListener {
                loadConfigFromDB(user);
                getIDfromUser(user);
                getRolefromUser(user);
-               Main.startGame(startArg,currentUserRole);
+               Main.startGame(startArg,currentUserRole,level);
 
            }
         }

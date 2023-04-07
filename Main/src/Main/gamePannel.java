@@ -13,6 +13,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 public class gamePannel extends JPanel implements Runnable,Updateable{
     int FPS = 60;
@@ -51,10 +52,10 @@ public class gamePannel extends JPanel implements Runnable,Updateable{
     public Entity npc[][] = new Entity[maxMap][10];
     public Entity mob[][] = new Entity[maxMap][20];
     public Interactive_Tile iTile[][] = new Interactive_Tile[maxMap][50];
-    ArrayList<Entity> entities = new ArrayList<>();
+    public List<Entity> entities = new ArrayList<Entity>();
     public Entity projectile[][] = new Entity[maxMap][20];
     //public ArrayList<Entity> projectileList = new ArrayList<>();
-    public ArrayList<Entity> particleList = new ArrayList<>();
+    public List<Entity> particleList = new ArrayList<Entity>();
 
     public int gameState;
     public final int startState = 0;
@@ -67,12 +68,13 @@ public class gamePannel extends JPanel implements Runnable,Updateable{
     public final int transitionState = 7;
     public final int tradeState = 8;
     public String role = "";
+    public String level = "";
 
     //Player default position
     int playerX = 100;
     int playerY = 100;
     int playerSpeed=4;
-    public gamePannel(String role){
+    public gamePannel(String role,String level){
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
@@ -80,9 +82,11 @@ public class gamePannel extends JPanel implements Runnable,Updateable{
         this.setFocusable(true);
         this.role = role;
         this.player = new Player(this,keyH,role);
+        this.level = level;
+
     }
     public void initGame(String screenType,String role){
-        System.out.println(screenType);
+        System.out.println(level);
         eSetter.setObject();
         eSetter.setNPC();
         eSetter.setMobz();

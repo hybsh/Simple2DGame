@@ -28,14 +28,6 @@ public class entitySetter {
         gp.obj[mapNum][2].worldX = gp.tileSize *25;
         gp.obj[mapNum][2].worldY = gp.tileSize *21;
 
-        gp.obj[mapNum][3] = new OBJ_Axe(gp);
-        gp.obj[mapNum][3].worldX = gp.tileSize *33;
-        gp.obj[mapNum][3].worldY = gp.tileSize *21;
-
-        gp.obj[mapNum][4] = new OBJ_Shield_Blue(gp);
-        gp.obj[mapNum][4].worldX = gp.tileSize *35;
-        gp.obj[mapNum][4].worldY = gp.tileSize *21;
-
         gp.obj[mapNum][5] = new OBJ_Potion_Red(gp);
         gp.obj[mapNum][5].worldX = gp.tileSize *22;
         gp.obj[mapNum][5].worldY = gp.tileSize *20;
@@ -48,6 +40,16 @@ public class entitySetter {
         gp.obj[mapNum][7].worldX = gp.tileSize *24;
         gp.obj[mapNum][7].worldY = gp.tileSize *20;
 
+        if(gp.level.equals("Easy") || gp.level.equals("Medium")){
+            gp.obj[mapNum][3] = new OBJ_Axe(gp);
+            gp.obj[mapNum][3].worldX = gp.tileSize *33;
+            gp.obj[mapNum][3].worldY = gp.tileSize *21;
+
+            gp.obj[mapNum][4] = new OBJ_Shield_Blue(gp);
+            gp.obj[mapNum][4].worldX = gp.tileSize *35;
+            gp.obj[mapNum][4].worldY = gp.tileSize *21;
+        }
+
     }
     public void setNPC(){
         int mapNum = 0;
@@ -56,36 +58,118 @@ public class entitySetter {
         gp.npc[mapNum][0].worldY = gp.tileSize * 21;
 
 
-        gp.npc[mapNum][1] = new NPC_Priest(gp);
-        gp.npc[mapNum][1].worldX = gp.tileSize * 9;
-        gp.npc[mapNum][1].worldY = gp.tileSize * 10;
-
         mapNum = 1;
         gp.npc[mapNum][0] = new NPC_Merchant(gp);
         gp.npc[mapNum][0].worldX = gp.tileSize * 12;
         gp.npc[mapNum][0].worldY = gp.tileSize * 7;
     }
     public void setMobz(){
-        int mapNum = 0;
-        gp.mob[mapNum][0] = new Slime(gp);
-        gp.mob[mapNum][0].worldX = gp.tileSize * 23;
-        gp.mob[mapNum][0].worldY = gp.tileSize *36;
+        if(gp.level.equals("Easy")) {
+            int mapNum = 0;
+            gp.mob[mapNum][0] = new Slime(gp);
+            gp.mob[mapNum][0].worldX = gp.tileSize * 23;
+            gp.mob[mapNum][0].worldY = gp.tileSize * 36;
 
-        gp.mob[mapNum][1] = new Slime(gp);
-        gp.mob[mapNum][1].worldX = gp.tileSize * 23;
-        gp.mob[mapNum][1].worldY = gp.tileSize *37;
+            gp.mob[mapNum][1] = new Slime(gp);
+            gp.mob[mapNum][1].worldX = gp.tileSize * 23;
+            gp.mob[mapNum][1].worldY = gp.tileSize * 37;
 
-        gp.mob[mapNum][2] = new Slime(gp);
-        gp.mob[mapNum][2].worldX = gp.tileSize * 22;
-        gp.mob[mapNum][2].worldY = gp.tileSize * 38;
+            gp.mob[mapNum][2] = new Slime(gp);
+            gp.mob[mapNum][2].worldX = gp.tileSize * 22;
+            gp.mob[mapNum][2].worldY = gp.tileSize * 38;
 
-        gp.mob[mapNum][3] = new Slime(gp);
-        gp.mob[mapNum][3].worldX = gp.tileSize * 11;
-        gp.mob[mapNum][3].worldY = gp.tileSize * 10;
+            gp.mob[mapNum][3] = new Slime(gp);
+            gp.mob[mapNum][3].worldX = gp.tileSize * 11;
+            gp.mob[mapNum][3].worldY = gp.tileSize * 10;
 
-        gp.mob[mapNum][4] = new Slime(gp);
-        gp.mob[mapNum][4].worldX = gp.tileSize * 10;
-        gp.mob[mapNum][4].worldY = gp.tileSize * 10;
+            gp.mob[mapNum][4] = new Slime(gp);
+            gp.mob[mapNum][4].worldX = gp.tileSize * 13;
+            gp.mob[mapNum][4].worldY = gp.tileSize * 10;
+        }
+        else if(gp.level.equals("Medium")){
+            int mapNum = 0;
+            gp.mob[mapNum][0] = new Slime(gp);
+            gp.mob[mapNum][0].worldX = gp.tileSize * 23;
+            gp.mob[mapNum][0].worldY = gp.tileSize * 36;
+
+            gp.mob[mapNum][1] = new Slime(gp);
+            gp.mob[mapNum][1].worldX = gp.tileSize * 23;
+            gp.mob[mapNum][1].worldY = gp.tileSize * 37;
+
+            gp.mob[mapNum][2] = new Slime(gp);
+            gp.mob[mapNum][2].worldX = gp.tileSize * 22;
+            gp.mob[mapNum][2].worldY = gp.tileSize * 38;
+
+            gp.mob[mapNum][3] = new Slime(gp);
+            gp.mob[mapNum][3].worldX = gp.tileSize * 11;
+            gp.mob[mapNum][3].worldY = gp.tileSize * 10;
+
+            gp.mob[mapNum][4] = new Slime(gp);
+            gp.mob[mapNum][4].worldX = gp.tileSize * 13;
+            gp.mob[mapNum][4].worldY = gp.tileSize * 10;
+
+            gp.mob[mapNum][5] = new Slime(gp);
+            gp.mob[mapNum][5].worldX = gp.tileSize * 39;
+            gp.mob[mapNum][5].worldY = gp.tileSize * 10;
+
+            gp.mob[mapNum][6] = new Slime(gp);
+            gp.mob[mapNum][6].worldX = gp.tileSize * 39;
+            gp.mob[mapNum][6].worldY = gp.tileSize * 14;
+
+            gp.mob[mapNum][7] = new Slime(gp);
+            gp.mob[mapNum][7].worldX = gp.tileSize * 34;
+            gp.mob[mapNum][7].worldY = gp.tileSize * 12;
+        }
+        else if(gp.level.equals("Hard")){
+            int mapNum = 0;
+            gp.mob[mapNum][0] = new Slime(gp);
+            gp.mob[mapNum][0].worldX = gp.tileSize * 23;
+            gp.mob[mapNum][0].worldY = gp.tileSize * 36;
+
+            gp.mob[mapNum][1] = new Slime(gp);
+            gp.mob[mapNum][1].worldX = gp.tileSize * 23;
+            gp.mob[mapNum][1].worldY = gp.tileSize * 37;
+
+            gp.mob[mapNum][2] = new Slime(gp);
+            gp.mob[mapNum][2].worldX = gp.tileSize * 22;
+            gp.mob[mapNum][2].worldY = gp.tileSize * 38;
+
+            gp.mob[mapNum][3] = new Slime(gp);
+            gp.mob[mapNum][3].worldX = gp.tileSize * 11;
+            gp.mob[mapNum][3].worldY = gp.tileSize * 10;
+
+            gp.mob[mapNum][4] = new Slime(gp);
+            gp.mob[mapNum][4].worldX = gp.tileSize * 13;
+            gp.mob[mapNum][4].worldY = gp.tileSize * 10;
+
+            gp.mob[mapNum][5] = new Slime(gp);
+            gp.mob[mapNum][5].worldX = gp.tileSize * 39;
+            gp.mob[mapNum][5].worldY = gp.tileSize * 10;
+
+            gp.mob[mapNum][6] = new Slime(gp);
+            gp.mob[mapNum][6].worldX = gp.tileSize * 39;
+            gp.mob[mapNum][6].worldY = gp.tileSize * 14;
+
+            gp.mob[mapNum][7] = new Slime(gp);
+            gp.mob[mapNum][7].worldX = gp.tileSize * 34;
+            gp.mob[mapNum][7].worldY = gp.tileSize * 12;
+
+            gp.mob[mapNum][8] = new Slime(gp);
+            gp.mob[mapNum][8].worldX = gp.tileSize * 10;
+            gp.mob[mapNum][8].worldY = gp.tileSize * 24;
+
+            gp.mob[mapNum][9] = new Slime(gp);
+            gp.mob[mapNum][9].worldX = gp.tileSize * 12;
+            gp.mob[mapNum][9].worldY = gp.tileSize * 28;
+
+            gp.mob[mapNum][10] = new Slime(gp);
+            gp.mob[mapNum][10].worldX = gp.tileSize * 14;
+            gp.mob[mapNum][10].worldY = gp.tileSize * 25;
+
+            gp.mob[mapNum][11] = new Slime(gp);
+            gp.mob[mapNum][11].worldX = gp.tileSize * 25;
+            gp.mob[mapNum][11].worldY = gp.tileSize * 40;
+        }
 
     }
     public void setInteractiveTiles(){
