@@ -273,6 +273,12 @@ public class Player extends Entity implements Updateable, Drawable {
                  gp.obj[gp.currentMap][index].use(this);
                  gp.obj[gp.currentMap][index] = null;
             }
+            else if(gp.obj[gp.currentMap][index].type == type_obstacle){
+                if(keyH.enterPressed == true){
+                    attacKCanceled = true;
+                    gp.obj[gp.currentMap][index].interact();
+                }
+            }
 
             else {
                 //SHOW IN INV
@@ -538,8 +544,9 @@ public class Player extends Entity implements Updateable, Drawable {
                 defense = getDefense();
             }
             if(selectedItem.type == type_consumable){
-                selectedItem.use(this);
-                inventory.remove(itemIndex);
+                if(selectedItem.use(this) == true) {
+                    inventory.remove(itemIndex);
+                }
                 //later
             }
 

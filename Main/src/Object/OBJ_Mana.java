@@ -18,8 +18,9 @@ public class OBJ_Mana extends Entity implements Useable {
 
     }
 
-    public void use(Entity entity){
+    public boolean use(Entity entity){
         gp.UI.addMessage("Mana + " + value);
         entity.mana += value;
+        return true;
     }
 }

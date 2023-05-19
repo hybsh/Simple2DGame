@@ -49,6 +49,21 @@ public class entitySetter {
             gp.obj[mapNum][4].worldX = gp.tileSize *35;
             gp.obj[mapNum][4].worldY = gp.tileSize *21;
         }
+        gp.obj[mapNum][8] = new OBJ_Door(gp);
+        gp.obj[mapNum][8].worldX = gp.tileSize *14;
+        gp.obj[mapNum][8].worldY = gp.tileSize *28;
+
+        gp.obj[mapNum][9] = new OBJ_Door(gp);
+        gp.obj[mapNum][9].worldX = gp.tileSize *12;
+        gp.obj[mapNum][9].worldY = gp.tileSize *12;
+
+        gp.obj[mapNum][10] = new OBJ_Chest(gp, new OBJ_Key(gp));
+        gp.obj[mapNum][10].worldX = gp.tileSize *12;
+        gp.obj[mapNum][10].worldY = gp.tileSize *10;
+
+        gp.obj[mapNum][11] = new OBJ_Key(gp);
+        gp.obj[mapNum][11].worldX = gp.tileSize *12;
+        gp.obj[mapNum][11].worldY = gp.tileSize *15;
 
     }
     public void setNPC(){

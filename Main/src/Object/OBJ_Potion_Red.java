@@ -16,9 +16,10 @@ public class OBJ_Potion_Red extends Entity implements Useable {
         description = "This might heal you";
         price = 20;
     }
-    public void use(Entity entity){
+    public boolean use(Entity entity){
         gp.gameState = gp.dialogueState;
         gp.UI.currentDialogue = "You drink the potion! \n Luckily you are not dead!";
         entity.life += value;
+        return true;
     }
 }
