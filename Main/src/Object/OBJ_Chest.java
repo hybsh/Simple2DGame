@@ -36,12 +36,11 @@ public class OBJ_Chest extends Entity {
             //play SFX
             StringBuilder sb = new StringBuilder();
             sb.append("You open the chest and find a " + loot.name + "!");
-            if(gp.player.inventory.size() == gp.player.maxInvSize){
+            if(gp.player.canObtainItem(loot) == false){
                 sb.append("\n ...But you cannot carry any more items!");
             }
             else{
                 sb.append("\n You obtain the loot for free!");
-                gp.player.inventory.add(loot);
                 opened = true;
                 down1 = image2;
             }

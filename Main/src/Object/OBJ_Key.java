@@ -16,6 +16,7 @@ public class OBJ_Key extends Entity {
         name = "Key";
         down1 = prepImg("/Objects/key", gp.tileSize, gp.tileSize);
         description = "["+name+"]\nYou can open doors \nwith this stuff";
+        stackable  = true;
     }
     public boolean use(Entity entity){
         gp.gameState = gp.dialogueState;

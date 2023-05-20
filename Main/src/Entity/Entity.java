@@ -81,6 +81,8 @@ public class Entity implements Updateable, Drawable {
     public int value;
     public int price = 20;
     public int knockbackPower = 0;
+    public boolean stackable = false;
+    public int amount = 1;
 
 
     //TYPES

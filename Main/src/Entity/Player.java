@@ -72,7 +72,7 @@ public class Player extends Entity implements Updateable, Drawable {
         dexterity =1;
         XP = 0;
         nextLvlXP = 10;
-        money = 0;
+        money = 100;
         currentWeapon = new OBJ_SWORD_NORMAL(gp);
         currentShield = new OBJ_SHIELD_NORMAL(gp);
         projectile = new OBJ_Fireball(gp);
@@ -284,8 +284,8 @@ public class Player extends Entity implements Updateable, Drawable {
                 //SHOW IN INV
                 String text;
 
-                if (inventory.size() != maxInvSize) {
-                    inventory.add(gp.obj[gp.currentMap][index]);
+                if (canObtainItem(gp.obj[gp.currentMap][index]) == true) {
+                    //inventory.add(gp.obj[gp.currentMap][index]);
                     gp.playSoundEffect(2);
                     text = "You got a " + gp.obj[gp.currentMap][index].name;
                 } else {
@@ -545,12 +545,52 @@ public class Player extends Entity implements Updateable, Drawable {
             }
             if(selectedItem.type == type_consumable){
                 if(selectedItem.use(this) == true) {
-                    inventory.remove(itemIndex);
+                    if(selectedItem.amount > 1){
+                        selectedItem.amount--;
+                    }
+                    else {
+                        inventory.remove(itemIndex);
+                    }
                 }
                 //later
             }
 
         }
+    }
+    public int searchItemInInv(String itemName){
+        int itemIndex = 999;
+
+        for(int i=0; i < inventory.size(); i++){
+            if(inventory.get(i).name.equals(itemName)){
+                itemIndex = i;
+                break;
+            }
+        }
+        return itemIndex;
+    }
+    public boolean canObtainItem(Entity item){
+        boolean canObtain = false;
+        if(item.stackable == true){
+            int index = searchItemInInv(item.name);
+
+            if(index  != 999){
+                inventory.get(index).amount++;
+                canObtain = true;
+            }
+            else{
+                if(inventory.size() != maxInvSize){
+                    inventory.add(item);
+                    canObtain = true;
+                }
+            }
+        }
+        else {
+            if(inventory.size() != maxInvSize){
+                inventory.add(item);
+                canObtain = true;
+            }
+        }
+        return canObtain;
     }
     public void damageInteractiveTile(int i){
         if(i != 999 && gp.iTile[gp.currentMap][i].destructible == true

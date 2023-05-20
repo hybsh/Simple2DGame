@@ -15,6 +15,7 @@ public class OBJ_Potion_Red extends Entity implements Useable {
         down1 = prepImg("/Objects/potion_red", gp.tileSize,gp.tileSize);
         description = "This might heal you";
         price = 20;
+        stackable = true;
     }
     public boolean use(Entity entity){
         gp.gameState = gp.dialogueState;

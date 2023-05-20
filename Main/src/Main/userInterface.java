@@ -553,6 +553,21 @@ public class userInterface implements Drawable {
             }
 
                 g2.drawImage(entity.inventory.get(i).down1, slotX,slotY,null);
+                if(entity == gp.player && entity.inventory.get(i).amount > 1){
+                    g2.setFont(g2.getFont().deriveFont(32f));
+                    int amountX,amountY;
+                    String s = "" + entity.inventory.get(i).amount;
+                    amountX = getXforAllignRightText(s, slotX + 44);
+                    amountY = slotY + gp.tileSize;
+
+                    g2.setColor(new Color(60,60,60));
+                    g2.drawString(s,amountX,amountY);
+
+                    g2.setColor(Color.white);
+                    g2.drawString(s,amountX-3,amountY-3);
+
+                }
+
                 slotX += gp.tileSize;
                 if(i == 4 || i==9 || i == 14){
                     slotX = slotXstart;
@@ -746,15 +761,15 @@ public class userInterface implements Drawable {
                     currentDialogue = "You ain't scammin me!";
                     drawDialogueScreen();
                 }
-                if(gp.player.inventory.size() == gp.player.maxInvSize){
-                    subState = 0;
-                    gp.gameState = gp.dialogueState;
-                    currentDialogue = "You cannot carry any more items";
-                    drawDialogueScreen();
-                }
-                else{
-                    gp.player.money -=price;
-                    gp.player.inventory.add(merchant.inventory.get(itemIndex));
+                else {
+                    if(gp.player.canObtainItem(merchant.inventory.get(itemIndex)) == true){
+                        gp.player.money -=price;
+                    }
+                    else {
+                        subState = 0;
+                        gp.gameState = gp.dialogueState;
+                        currentDialogue = "You cannot carry any more items";
+                    }
                 }
             }
         }
@@ -800,7 +815,12 @@ public class userInterface implements Drawable {
                     currentDialogue = "I don't buy used items fam";
                 }
                 else{
-                    gp.player.inventory.remove(itemIndex);
+                    if(gp.player.inventory.get(itemIndex).amount > 1){
+                        gp.player.inventory.get(itemIndex).amount --;
+                    }
+                    else {
+                        gp.player.inventory.remove(itemIndex);
+                    }
                     gp.player.money += price;
                 }
             }
