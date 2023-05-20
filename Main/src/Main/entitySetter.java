@@ -69,6 +69,10 @@ public class entitySetter {
         gp.obj[mapNum][12].worldX = gp.tileSize *18;
         gp.obj[mapNum][12].worldY = gp.tileSize *20;
 
+        gp.obj[mapNum][13] = new OBJ_Tent(gp);
+        gp.obj[mapNum][13].worldX = gp.tileSize *18;
+        gp.obj[mapNum][13].worldY = gp.tileSize *21;
+
     }
     public void setNPC(){
         int mapNum = 0;
