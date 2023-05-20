@@ -6,6 +6,7 @@ import Entity.Player;
 import InteractiveTile.Interactive_Tile;
 import Tile.TileManager;
 import Interfaces.*;
+import Env.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -44,6 +45,7 @@ public class gamePannel extends JPanel implements Runnable,Updateable{
     public userInterface UI = new userInterface(this);
     public EventHandler eHandler = new EventHandler(this);
     config  config = new config(this);
+    EnvManager eManager  = new EnvManager(this);
     Thread gameThread;
     public collisionCheck checker = new collisionCheck(this);
     public entitySetter eSetter = new entitySetter(this);
@@ -91,6 +93,7 @@ public class gamePannel extends JPanel implements Runnable,Updateable{
         eSetter.setNPC();
         eSetter.setMobz();
         eSetter.setInteractiveTiles();
+        eManager.setup();
         gameState = startState;
         this.role = role;
 
@@ -262,6 +265,8 @@ public class gamePannel extends JPanel implements Runnable,Updateable{
                 entities.get(i).draw(g2);
             }
             entities.clear();
+
+            eManager.draw(g2);
 
 
             UI.draw(g2);
