@@ -65,6 +65,10 @@ public class entitySetter {
         gp.obj[mapNum][11].worldX = gp.tileSize *12;
         gp.obj[mapNum][11].worldY = gp.tileSize *15;
 
+        gp.obj[mapNum][12] = new OBJ_Lantern(gp);
+        gp.obj[mapNum][12].worldX = gp.tileSize *18;
+        gp.obj[mapNum][12].worldY = gp.tileSize *20;
+
     }
     public void setNPC(){
         int mapNum = 0;

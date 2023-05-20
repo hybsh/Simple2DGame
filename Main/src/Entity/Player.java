@@ -17,6 +17,7 @@ public class Player extends Entity implements Updateable, Drawable {
     public final int screenX;
     public final int screenY;
     public boolean attacKCanceled = false;
+    public boolean lightUpdated = false;
     public String role = "";
 
     public Player(gamePannel gp, keyHandler keyH,String role){
@@ -542,6 +543,15 @@ public class Player extends Entity implements Updateable, Drawable {
             if(selectedItem.type == type_shield){
                 currentShield = selectedItem;
                 defense = getDefense();
+            }
+            if(selectedItem.type == type_light){
+                if(currentLight == selectedItem){
+                    currentLight = null;
+                }
+                else{
+                    currentLight = selectedItem;
+                }
+                lightUpdated = true;
             }
             if(selectedItem.type == type_consumable){
                 if(selectedItem.use(this) == true) {

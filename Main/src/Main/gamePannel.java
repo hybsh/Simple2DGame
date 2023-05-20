@@ -202,6 +202,7 @@ public class gamePannel extends JPanel implements Runnable,Updateable{
                    iTile[currentMap][i].update();
                }
            }
+           eManager.update();
         }
         if(gameState == pauseState){
            
