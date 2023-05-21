@@ -73,6 +73,13 @@ public class gamePannel extends JPanel implements Runnable,Updateable{
     public final int tradeState = 8;
     public final int sleepState = 9;
     public final int mapState = 10;
+
+
+    public int currentArea;
+    public int nextArea;
+    public final int outside = 50;
+    public final int indoor = 51;
+    public final int dungeon = 52;
     public String role = "";
     public String level = "";
 
@@ -99,6 +106,7 @@ public class gamePannel extends JPanel implements Runnable,Updateable{
         eSetter.setInteractiveTiles();
         eManager.setup();
         gameState = startState;
+        currentArea = outside;
         this.role = role;
 
         tempScreen = new BufferedImage(screenWidth,screenHeight,BufferedImage.TYPE_INT_ARGB);
@@ -316,5 +324,8 @@ public class gamePannel extends JPanel implements Runnable,Updateable{
     public void playSoundEffect(int i){
         sound.setFile(i);
         sound.play();
+    }
+    public void changeArea(){
+        currentArea = nextArea;
     }
 }

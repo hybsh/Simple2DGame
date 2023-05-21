@@ -675,6 +675,7 @@ public class userInterface implements Drawable {
             gp.player.worldY = gp.eHandler.tempRow * gp.tileSize;
             gp.eHandler.prevEventX = gp.player.worldX;
             gp.eHandler.prevEventY = gp.player.worldY;
+            gp.changeArea();
         }
     }
 

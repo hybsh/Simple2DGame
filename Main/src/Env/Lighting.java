@@ -113,8 +113,13 @@ public class Lighting {
         }
     }
     public void draw(Graphics2D g2){
-        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, fieldAlpha));
-        g2.drawImage(darknessFilter,0,0,null);
+
+        if(gp.currentArea == gp.outside){
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, fieldAlpha));
+        }
+        if(gp.currentArea == gp.outside || gp.currentArea == gp.dungeon){
+            g2.drawImage(darknessFilter,0,0,null);
+        }
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
 
         String situation = "";
@@ -124,8 +129,10 @@ public class Lighting {
             case night: situation = "night"; break;
             case dawn: situation = "dawn"; break;
         }
-        g2.setColor(Color.white);
-        g2.setFont(g2.getFont().deriveFont(50f));
-        g2.drawString(situation, 800,500);
+        if(gp.currentArea == gp.outside) {
+            g2.setColor(Color.white);
+            g2.setFont(g2.getFont().deriveFont(50f));
+            g2.drawString(situation, 800, 500);
+        }
     }
 }
