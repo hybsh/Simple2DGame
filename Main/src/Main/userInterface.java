@@ -57,6 +57,7 @@ public class userInterface implements Drawable {
     public void draw(Graphics2D g2){
 
         this.g2 = g2;
+        g2.setFont(purisaB.deriveFont(32f));
 
 
 

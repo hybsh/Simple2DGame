@@ -59,7 +59,7 @@ public class entitySetter {
 
         gp.obj[mapNum][10] = new OBJ_Chest(gp, new OBJ_Key(gp));
         gp.obj[mapNum][10].worldX = gp.tileSize *12;
-        gp.obj[mapNum][10].worldY = gp.tileSize *10;
+        gp.obj[mapNum][10].worldY = gp.tileSize * 8;
 
         gp.obj[mapNum][11] = new OBJ_Key(gp);
         gp.obj[mapNum][11].worldX = gp.tileSize *12;

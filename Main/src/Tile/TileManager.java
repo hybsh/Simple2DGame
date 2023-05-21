@@ -20,12 +20,14 @@ public class TileManager implements Drawable {
     public TileManager(gamePannel gp){
         this.gp =gp;
 
-        tile = new Tile[50];
+        tile = new Tile[55];
         mapTileNum = new int[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];
 
         getTileImage();
         loadMap("/Maps/DoneWorld.txt",0);
         loadMap("/Maps/Interior01.txt",1);
+        loadMap("/Maps/dungeon01.txt",2);
+        loadMap("/Maps/dungeon02.txt",3);
     }
     public void loadMap(String mapPath, int map){
         try{
@@ -108,6 +110,8 @@ public class TileManager implements Drawable {
             prepImg(43,"floor01",false);
             prepImg(44,"table01",true);
             prepImg(49,"black",true);
+            prepImg(50,"stairs_down",false);
+            prepImg(51,"stairs_up",false);
     }
 
     public void prepImg(int index, String imageName, boolean colission){

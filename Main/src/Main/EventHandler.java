@@ -66,6 +66,9 @@ public class EventHandler {
             else if(hit(1,12,9,"up") == true){
                 speak(gp.npc[1][0]);
             }
+            else if(hit(0,12,10,"any") == true){
+                teleport(2,9,41);
+            }
         }
     }
     public boolean hit(int map,int col, int row, String reqDirection){
