@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class userInterface implements Drawable {
     gamePannel gp;
     Graphics2D g2;
-    Font purisaB;
+    public Font purisaB;
     BufferedImage heart_full,heart_half,heart_empty,crystal_full,crystal_blank,coin;
     public boolean messageOn = false;
     public boolean finished = false;

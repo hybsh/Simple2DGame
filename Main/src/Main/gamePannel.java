@@ -4,6 +4,7 @@ package Main;
 import Entity.Entity;
 import Entity.Player;
 import InteractiveTile.Interactive_Tile;
+import Tile.Map;
 import Tile.TileManager;
 import Interfaces.*;
 import Env.*;
@@ -46,6 +47,7 @@ public class gamePannel extends JPanel implements Runnable,Updateable{
     public EventHandler eHandler = new EventHandler(this);
     config  config = new config(this);
     EnvManager eManager  = new EnvManager(this);
+    Map map = new Map(this);
     Thread gameThread;
     public collisionCheck checker = new collisionCheck(this);
     public entitySetter eSetter = new entitySetter(this);
@@ -70,6 +72,7 @@ public class gamePannel extends JPanel implements Runnable,Updateable{
     public final int transitionState = 7;
     public final int tradeState = 8;
     public final int sleepState = 9;
+    public final int mapState = 10;
     public String role = "";
     public String level = "";
 
@@ -220,6 +223,9 @@ public class gamePannel extends JPanel implements Runnable,Updateable{
         if(gameState == startState){
             UI.draw(g2);
         }
+        else if (gameState == mapState){
+            map.drawFullMapScreen(g2);
+        }
         else{
             tileM.draw(g2);
 
@@ -270,6 +276,7 @@ public class gamePannel extends JPanel implements Runnable,Updateable{
 
             eManager.draw(g2);
 
+            map.drawMiniMap(g2);
 
             UI.draw(g2);
         }
