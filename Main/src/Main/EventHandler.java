@@ -72,6 +72,10 @@ public class EventHandler {
             else if(hit(2,9,41,"any") == true){
                 teleport(0,12,10,gp.outside);
             }
+            else if(hit(2,25,18,"any") == true){
+                teleport(3,22,22,gp.dungeon);
+            }
+
         }
     }
     public boolean hit(int map,int col, int row, String reqDirection){

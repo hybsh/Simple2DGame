@@ -326,6 +326,16 @@ public class gamePannel extends JPanel implements Runnable,Updateable{
         sound.play();
     }
     public void changeArea(){
+        if(nextArea != currentArea){
+            stopBgMusic();
+            if(nextArea == outside){
+                playBgMusic(0);
+            }
+            if(nextArea == dungeon){
+                playBgMusic(12);
+            }
+        }
         currentArea = nextArea;
+        eSetter.setMobz();
     }
 }
