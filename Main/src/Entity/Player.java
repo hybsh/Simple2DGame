@@ -141,6 +141,7 @@ public class Player extends Entity implements Updateable, Drawable {
     }
 
     public void update(){
+        System.out.println("Player current position: X: " + this.worldX + ", Y: " + this.worldY); // find player position
         if(attacking == true){
             attacking();
         }

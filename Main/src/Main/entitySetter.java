@@ -86,6 +86,13 @@ public class entitySetter {
         gp.npc[mapNum][0].worldX = gp.tileSize * 12;
         gp.npc[mapNum][0].worldY = gp.tileSize * 7;
     }
+
+    public void setBoss(){
+        // setting the boss position
+        gp.boss[3][0] = new Slime(gp);
+        gp.boss[3][0].worldX = gp.tileSize * 27;
+        gp.boss[3][0].worldY = gp.tileSize * 21;
+    }
     public void setMobz(){
         if(gp.level.equals("Easy")) {
             int mapNum = 0;

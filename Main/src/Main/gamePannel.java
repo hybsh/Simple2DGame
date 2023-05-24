@@ -55,6 +55,8 @@ public class gamePannel extends JPanel implements Runnable,Updateable{
     public Entity obj[][] = new Entity[maxMap][20];
     public Entity npc[][] = new Entity[maxMap][10];
     public Entity mob[][] = new Entity[maxMap][20];
+
+    public Entity boss[][] = new Entity[maxMap][20];
     public Interactive_Tile iTile[][] = new Interactive_Tile[maxMap][50];
     public List<Entity> entities = new ArrayList<Entity>();
     public Entity projectile[][] = new Entity[maxMap][20];
@@ -103,6 +105,7 @@ public class gamePannel extends JPanel implements Runnable,Updateable{
         eSetter.setObject();
         eSetter.setNPC();
         eSetter.setMobz();
+        eSetter.setBoss();
         eSetter.setInteractiveTiles();
         eManager.setup();
         gameState = startState;
@@ -173,6 +176,7 @@ public class gamePannel extends JPanel implements Runnable,Updateable{
 
         if(gameState == playState) {
             player.update();
+            boss[3][0].move_to_player(player);
             for(int i = 0; i< npc[1].length; i++){
                 if(npc[currentMap][i] != null){
                     npc[currentMap][i].update();
@@ -257,6 +261,11 @@ public class gamePannel extends JPanel implements Runnable,Updateable{
             for(int i=0; i<mob[1].length; i++){
                 if(mob[currentMap][i] != null){
                     entities.add(mob[currentMap][i]);
+                }
+            }
+            for(int i=0; i<boss[3].length; i++){
+                if(boss[currentMap][i] != null){
+                    entities.add(boss[currentMap][i]);
                 }
             }
             for(int i=0; i<projectile[1].length; i++){

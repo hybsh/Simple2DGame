@@ -248,6 +248,21 @@ public class Entity implements Updateable, Drawable {
     public void interact(){
 
     }
+
+    public void move_to_player(Player player){
+        if(worldX < player.worldX){
+            worldX += speed;
+        }
+        if(worldX > player.worldX){
+            worldX -= speed;
+        }
+        if(worldY < player.worldY){
+            worldY += speed;
+        }
+        if(worldY > player.worldY){
+            worldY -= speed;
+        }
+    }
     public void update(){
 
         if(knockback == true){
