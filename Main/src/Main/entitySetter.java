@@ -90,9 +90,9 @@ public class entitySetter {
 
     public void setBoss(){
         // setting the boss position
-        gp.boss[3][0] = new Boss(gp);
-        gp.boss[3][0].worldX = gp.tileSize * 27;
-        gp.boss[3][0].worldY = gp.tileSize * 21;
+        gp.boss = new Boss(gp);
+        gp.boss.worldX = gp.tileSize * 27;
+        gp.boss.worldY = gp.tileSize * 21;
     }
     public void setMobz(){
         if(gp.level.equals("Easy")) {

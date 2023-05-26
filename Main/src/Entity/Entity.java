@@ -13,6 +13,8 @@ import java.util.ArrayList;
 
 public class Entity implements Updateable, Drawable {
     gamePannel gp;
+
+    boolean boss_attack = false;
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
     public  BufferedImage attackup1,attackup2,attackdown1,attackdown2,attackleft1,attackleft2,attackright1,attackright2;
     public BufferedImage image,image2,image3;
@@ -247,21 +249,6 @@ public class Entity implements Updateable, Drawable {
     }
     public void interact(){
 
-    }
-
-    public void move_to_player(Player player){
-        if(worldX < player.worldX){
-            worldX += speed;
-        }
-        if(worldX > player.worldX){
-            worldX -= speed;
-        }
-        if(worldY < player.worldY){
-            worldY += speed;
-        }
-        if(worldY > player.worldY){
-            worldY -= speed;
-        }
     }
     public void update(){
 

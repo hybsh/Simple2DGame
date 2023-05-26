@@ -4,6 +4,7 @@ package Main;
 import Entity.Entity;
 import Entity.Player;
 import InteractiveTile.Interactive_Tile;
+import MOBZ.Boss;
 import Tile.Map;
 import Tile.TileManager;
 import Interfaces.*;
@@ -29,7 +30,7 @@ public class gamePannel extends JPanel implements Runnable,Updateable{
     public final int maxScreenCol = 20;
     public final int maxScreenRow = 12;
     public int maxMap = 10;
-    public int currentMap = 0;
+    public int currentMap = 3;
     public final int screenWidth = tileSize * maxScreenCol;
     public final int screenHeight = tileSize * maxScreenRow;
 
@@ -56,7 +57,7 @@ public class gamePannel extends JPanel implements Runnable,Updateable{
     public Entity npc[][] = new Entity[maxMap][10];
     public Entity mob[][] = new Entity[maxMap][20];
 
-    public Entity boss[][] = new Entity[maxMap][20];
+    public Boss boss = new Boss(this);
     public Interactive_Tile iTile[][] = new Interactive_Tile[maxMap][50];
     public List<Entity> entities = new ArrayList<Entity>();
     public Entity projectile[][] = new Entity[maxMap][20];
@@ -176,7 +177,7 @@ public class gamePannel extends JPanel implements Runnable,Updateable{
 
         if(gameState == playState) {
             player.update();
-            //boss[3][0].move_to_player(player);
+            this.boss.move_to_player();
             for(int i = 0; i< npc[1].length; i++){
                 if(npc[currentMap][i] != null){
                     npc[currentMap][i].update();
@@ -263,11 +264,7 @@ public class gamePannel extends JPanel implements Runnable,Updateable{
                     entities.add(mob[currentMap][i]);
                 }
             }
-            for(int i=0; i<boss[3].length; i++){
-                if(boss[currentMap][i] != null){
-                    entities.add(boss[currentMap][i]);
-                }
-            }
+            entities.add(boss);
             for(int i=0; i<projectile[1].length; i++){
                 if(projectile[currentMap][i] != null){
                     entities.add(projectile[currentMap][i]);
