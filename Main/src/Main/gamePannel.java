@@ -264,7 +264,8 @@ public class gamePannel extends JPanel implements Runnable,Updateable{
                     entities.add(mob[currentMap][i]);
                 }
             }
-            entities.add(boss);
+            if (currentMap == 3)
+                entities.add(boss);
             for(int i=0; i<projectile[1].length; i++){
                 if(projectile[currentMap][i] != null){
                     entities.add(projectile[currentMap][i]);

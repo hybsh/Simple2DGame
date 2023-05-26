@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class Entity implements Updateable, Drawable {
     gamePannel gp;
 
-    boolean boss_attack = false;
+    public boolean boss_attack = true;
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
     public  BufferedImage attackup1,attackup2,attackdown1,attackdown2,attackleft1,attackleft2,attackright1,attackright2;
     public BufferedImage image,image2,image3;
@@ -156,36 +156,77 @@ public class Entity implements Updateable, Drawable {
         {
             switch(direction){
                 case "up":
-                    if(spriteNum == 1){
-                        image = up1;
+                    if (boss_attack == false) {
+
+                        if(spriteNum == 1){
+                            image = up1;
+                        }
+                        if(spriteNum == 2){
+                            image = up2;
+                        }
                     }
-                    if(spriteNum == 2){
-                        image = up2;
+                    else{
+                        if(spriteNum == 1){
+                            image = attackup1;
+                        }
+                        if(spriteNum == 2){
+                            image = attackup2;
+                        }
                     }
 
                     break;
                 case "down":
-                    if(spriteNum == 1){
-                        image = down1;
+                    if (boss_attack == false){
+                        if(spriteNum == 1){
+                            image = down1;
+                        }
+                        if(spriteNum == 2) {
+                            image = down2;
+                        }
                     }
-                    if(spriteNum == 2) {
-                        image = down2;
+                    else{
+                        if(spriteNum == 1){
+                            image = attackdown1;
+                        }
+                        if(spriteNum == 2){
+                            image = attackdown2;
+                        }
                     }
                     break;
                 case "left":
-                    if(spriteNum == 1){
-                        image = left1;
+                    if (boss_attack == false){
+                        if(spriteNum == 1){
+                            image = left1;
+                        }
+                        if(spriteNum == 2){
+                            image = left2;
+                        }
                     }
-                    if(spriteNum == 2){
-                        image = left2;
+                    else {
+                        if (spriteNum == 1) {
+                            image = attackleft1;
+                        }
+                        if (spriteNum == 2) {
+                            image = attackleft2;
+                        }
                     }
                     break;
                 case "right":
-                    if(spriteNum == 1){
-                        image = right1;
+                    if (boss_attack == false){
+                        if(spriteNum == 1){
+                            image = right1;
+                        }
+                        if(spriteNum == 2){
+                            image = right2;
+                        }
                     }
-                    if(spriteNum == 2){
-                        image = right2;
+                    else{
+                        if(spriteNum == 1){
+                            image = attackright1;
+                        }
+                        if(spriteNum == 2){
+                            image = attackright2;
+                        }
                     }
                     break;
             }

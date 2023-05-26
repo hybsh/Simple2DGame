@@ -14,8 +14,6 @@ public class Boss extends Entity {
 
     int counter_attack = 0;
 
-    boolean attacking = false;
-
     public Boss(gamePannel gp) {
         super(gp);
         this.gp = gp;
@@ -116,41 +114,28 @@ public class Boss extends Entity {
             }
         }
 
-        public void atack(String direction){
-            attacking = true;
-            System.out.println("ATTTTAAACCCl");
-            Image old_image = this.image;
-
-//            counter_attack += 1;
-//            if (counter_attack == 5)
-//            {
-//                if (spriteNum == 1) {
-//                    spriteNum = 2;
-//                } else
-//                    this.spriteNum = 1;
-//                counter_attack = 0;
-//            }
-
-        }
         public void move_to_player(){
             int posX = worldX + 5 * worldX / 100;
             int posY = worldY + 5 * worldY / 100;
+            if (this.direction == "left")
+            {
+                posX = worldX + 10 * worldX / 100;
+                posY = worldY + 5 * worldY / 100;
+            }
+            if (this.direction == "up")
+            {
+                posX = worldX + 5 * worldX / 100;
+                posY = worldY + 10 * worldY / 100;
+            }
             if(posX < gp.player.worldX){
                 worldX += speed;
                 this.direction = "right";
                 change_sprite();
             }
             if(posX > gp.player.worldX){
-                if (attacking == false)
-                {
-                    worldX -= speed;
-                    change_sprite();
-                }
+                worldX -= speed;
+                change_sprite();
                 this.direction = "left";
-                System.out.println("Vin la atac");
-                System.out.println("Dif este " + (posX - gp.player.worldX < 100));
-                if (posX - gp.player.worldX < 100)
-                    atack(this.direction);
             }
             if(posY < gp.player.worldY){
                 worldY += speed;
