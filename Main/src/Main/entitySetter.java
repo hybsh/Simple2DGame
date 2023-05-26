@@ -3,6 +3,7 @@ package Main;
 import Entity.NPC_Merchant;
 import Entity.NPC_Priest;
 import InteractiveTile.IT_Dry_Tree;
+import MOBZ.Boss;
 import MOBZ.Slime;
 import Object.*;
 
@@ -89,7 +90,7 @@ public class entitySetter {
 
     public void setBoss(){
         // setting the boss position
-        gp.boss[3][0] = new Slime(gp);
+        gp.boss[3][0] = new Boss(gp);
         gp.boss[3][0].worldX = gp.tileSize * 27;
         gp.boss[3][0].worldY = gp.tileSize * 21;
     }
@@ -199,6 +200,7 @@ public class entitySetter {
             gp.mob[mapNum][11] = new Slime(gp);
             gp.mob[mapNum][11].worldX = gp.tileSize * 25;
             gp.mob[mapNum][11].worldY = gp.tileSize * 40;
+
         }
 
     }

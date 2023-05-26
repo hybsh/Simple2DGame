@@ -176,7 +176,7 @@ public class gamePannel extends JPanel implements Runnable,Updateable{
 
         if(gameState == playState) {
             player.update();
-            boss[3][0].move_to_player(player);
+            //boss[3][0].move_to_player(player);
             for(int i = 0; i< npc[1].length; i++){
                 if(npc[currentMap][i] != null){
                     npc[currentMap][i].update();
