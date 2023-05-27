@@ -168,7 +168,7 @@ public class Entity implements Updateable, Drawable {
                         }
                     }
                     if(attacking == true){
-                        tempScreenY = screenY + up1.getHeight();
+                        tempScreenY = screenY - up1.getHeight();
                         if (spriteNum == 1) {
                             image = attackup1;
                         }
@@ -199,7 +199,6 @@ public class Entity implements Updateable, Drawable {
                     break;
                 case "left":
                     if(attacking == false) {
-                        tempScreenX = tempScreenX - up1.getWidth()*4;
                         if (spriteNum == 1) {
                             image = left1;
                         }
@@ -264,7 +263,7 @@ public class Entity implements Updateable, Drawable {
             if(dying == true){
                 dyingAnimation(g2);
             }
-            g2.drawImage(image, screenX, screenY,null);
+            g2.drawImage(image, tempScreenX, tempScreenY,null);
 
             changeAlpha(g2,1f);
         }
