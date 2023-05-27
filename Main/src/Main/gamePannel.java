@@ -57,6 +57,8 @@ public class gamePannel extends JPanel implements Runnable,Updateable{
     public Entity npc[][] = new Entity[maxMap][10];
     public Entity mob[][] = new Entity[maxMap][20];
 
+    public Entity boss2[][] = new Entity[maxMap][20];
+
     public Boss boss = new Boss(this);
     public Interactive_Tile iTile[][] = new Interactive_Tile[maxMap][50];
     public List<Entity> entities = new ArrayList<Entity>();
@@ -106,7 +108,7 @@ public class gamePannel extends JPanel implements Runnable,Updateable{
         eSetter.setObject();
         eSetter.setNPC();
         eSetter.setMobz();
-        eSetter.setBoss();
+        //eSetter.setBoss();
         eSetter.setInteractiveTiles();
         eManager.setup();
         gameState = startState;
@@ -177,12 +179,13 @@ public class gamePannel extends JPanel implements Runnable,Updateable{
 
         if(gameState == playState) {
             player.update();
-            this.boss.move_to_player();
+            //this.boss.move_to_player();
             for(int i = 0; i< npc[1].length; i++){
                 if(npc[currentMap][i] != null){
                     npc[currentMap][i].update();
                 }
             }
+            this.boss.update();
             for(int i=0; i< mob[1].length; i++){
                 if(mob[currentMap][i] != null){
                     if(mob[currentMap][i].alive == true && mob[currentMap][i].dying == false) {
@@ -264,8 +267,6 @@ public class gamePannel extends JPanel implements Runnable,Updateable{
                     entities.add(mob[currentMap][i]);
                 }
             }
-            if (currentMap == 3)
-                entities.add(boss);
             for(int i=0; i<projectile[1].length; i++){
                 if(projectile[currentMap][i] != null){
                     entities.add(projectile[currentMap][i]);

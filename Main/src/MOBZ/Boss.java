@@ -27,9 +27,9 @@ public class Boss extends Entity {
         defense = 0;
         XP = 2;
 
-        solidArea.x = 3;
-        solidArea.y = 18;
-        solidArea.width = 42;
+        solidArea.x = 4;
+        solidArea.y = 4;
+        solidArea.width = 40;
         solidArea.height = 30;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
@@ -66,37 +66,11 @@ public class Boss extends Entity {
         }
 
     public void setAction(){
-        actionLockCounter++;
-        if (actionLockCounter == 120) {
-            Random random = new Random();
-            int i = random.nextInt(100) + 1;
-            System.out.println(i);
-
-            if (i <= 25) {
-                direction = "up";
-            }
-            if (i > 25 && i <= 50) {
-                direction = "down";
-            }
-            if (i > 50 && i <= 75) {
-                direction = "left";
-            }
-            if (i > 75 && i <= 100) {
-                direction = "right";
-            }
-            actionLockCounter = 0;
-        }
-//        int i = new Random().nextInt(100) +1;
-//        if(i > 99 && projectile.alive == false && shotAvailableCounter == 30){
-//            projectile.set(worldX,worldY,direction,true,this);
-//            for(int j = 0; j<gp.projectile[1].length; j++){
-//                if(gp.projectile[gp.currentMap][j] == null){
-//                    gp.projectile[gp.currentMap][j] = projectile;
-//                    break;
-//                }
-//            }
-//            shotAvailableCounter = 0;
-        }
+       move_to_player();
+       if(attacking == false){
+           checkAttack(30, gp.tileSize*4, gp.tileSize);
+       }
+    }
 
 
 

@@ -455,55 +455,7 @@ public class Player extends Entity implements Updateable, Drawable {
            }
         }
     }
-    public void attacking(){
 
-        spriteCounter++;
-        if(spriteCounter <= 5){
-            spriteNum=1;
-        }
-        if(spriteCounter >5 && spriteCounter <= 25){
-            spriteNum=2;
-
-
-            int currentWorldX = worldX;
-            int currentWorldY = worldY;
-            int solidAreaWidth = solidArea.width;
-            int solidAreaHeight = solidArea.height;
-
-            switch (direction){
-                case "up": worldY -= attackArea.height;break;
-                case "down": worldY +=attackArea.height;break;
-                case "left": worldX -= attackArea.width;break;
-                case "right": worldX += attackArea.width;break;
-            }
-
-            solidArea.width = attackArea.width;
-            solidArea.height = attackArea.height;
-
-            int mobIndex = gp.checker.checkEntity(this, gp.mob);
-            damageMob(mobIndex,attack, currentWeapon.knockbackPower);
-
-            int iTileIndex = gp.checker.checkEntity(this,gp.iTile);
-            damageInteractiveTile(iTileIndex);
-
-            int projectileIndex = gp.checker.checkEntity(this, gp.projectile);
-            damageProjectile(projectileIndex);
-
-
-            worldX = currentWorldX;
-            worldY = currentWorldY;
-            solidArea.width = solidAreaWidth;
-            solidArea.height = solidAreaHeight;
-
-
-
-        }
-        if(spriteCounter >25){
-            spriteNum=1;
-            spriteCounter=0;
-            attacking = false;
-        }
-    }
     public void damageProjectile(int i){
         if(i != 999){
             Entity projectile = gp.projectile[gp.currentMap][i];

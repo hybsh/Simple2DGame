@@ -10,11 +10,12 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Entity implements Updateable, Drawable {
     gamePannel gp;
 
-    public boolean boss_attack = true;
+    public boolean boss_attack = false;
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
     public  BufferedImage attackup1,attackup2,attackdown1,attackdown2,attackleft1,attackleft2,attackright1,attackright2;
     public BufferedImage image,image2,image3;
@@ -142,10 +143,12 @@ public class Entity implements Updateable, Drawable {
     public boolean use(Entity entity){return false;}
 
     public void draw(Graphics2D g2){
-
         BufferedImage image = null;
         int screenX = worldX - gp.player.worldX + gp.player.screenX;
         int screenY = worldY - gp.player.worldY + gp.player.screenY;
+
+        int tempScreenX = screenX;
+        int tempScreenY = screenY;
 
 
         if(     worldX + gp.tileSize > gp.player.worldX - gp.player.screenX &&
@@ -156,53 +159,55 @@ public class Entity implements Updateable, Drawable {
         {
             switch(direction){
                 case "up":
-                    if (boss_attack == false) {
-
-                        if(spriteNum == 1){
+                    if(attacking == false) {
+                        if (spriteNum == 1) {
                             image = up1;
                         }
-                        if(spriteNum == 2){
+                        if (spriteNum == 2) {
                             image = up2;
                         }
                     }
-                    else{
-                        if(spriteNum == 1){
+                    if(attacking == true){
+                        tempScreenY = screenY - gp.tileSize;
+                        if (spriteNum == 1) {
                             image = attackup1;
                         }
-                        if(spriteNum == 2){
+                        if (spriteNum == 2) {
                             image = attackup2;
                         }
-                    }
 
+                    }
                     break;
+
                 case "down":
-                    if (boss_attack == false){
-                        if(spriteNum == 1){
+                    if(attacking == false) {
+                        if (spriteNum == 1) {
                             image = down1;
                         }
-                        if(spriteNum == 2) {
+                        if (spriteNum == 2) {
                             image = down2;
                         }
                     }
-                    else{
-                        if(spriteNum == 1){
+                    if(attacking == true){
+                        if (spriteNum == 1) {
                             image = attackdown1;
                         }
-                        if(spriteNum == 2){
+                        if (spriteNum == 2) {
                             image = attackdown2;
                         }
                     }
                     break;
                 case "left":
-                    if (boss_attack == false){
-                        if(spriteNum == 1){
+                    if(attacking == false) {
+                        if (spriteNum == 1) {
                             image = left1;
                         }
-                        if(spriteNum == 2){
+                        if (spriteNum == 2) {
                             image = left2;
                         }
                     }
-                    else {
+                    if(attacking == true){
+                        tempScreenX = tempScreenX - gp.tileSize;
                         if (spriteNum == 1) {
                             image = attackleft1;
                         }
@@ -212,19 +217,19 @@ public class Entity implements Updateable, Drawable {
                     }
                     break;
                 case "right":
-                    if (boss_attack == false){
-                        if(spriteNum == 1){
+                    if(attacking == false) {
+                        if (spriteNum == 1) {
                             image = right1;
                         }
-                        if(spriteNum == 2){
+                        if (spriteNum == 2) {
                             image = right2;
                         }
                     }
-                    else{
-                        if(spriteNum == 1){
+                    if(attacking == true){
+                        if (spriteNum == 1) {
                             image = attackright1;
                         }
-                        if(spriteNum == 2){
+                        if (spriteNum == 2) {
                             image = attackright2;
                         }
                     }
@@ -333,6 +338,9 @@ public class Entity implements Updateable, Drawable {
                 speed = defaultSpeed;
             }
         }
+        else if(attacking == true){
+            attacking();
+        }
         else {
             setAction();
 
@@ -369,18 +377,19 @@ public class Entity implements Updateable, Drawable {
                     }
                 }
             }
+            spriteCounter++;
+            if(spriteCounter > 10){
+                if(spriteNum == 1){
+                    spriteNum =2;
+                }
+                else if(spriteNum == 2){
+                    spriteNum =1;
+                }
+                spriteCounter = 0;
+            }
         }
 
-        spriteCounter++;
-        if(spriteCounter > 10){
-            if(spriteNum == 1){
-                spriteNum =2;
-            }
-            else if(spriteNum == 2){
-                spriteNum =1;
-            }
-            spriteCounter = 0;
-        }
+
         if(invincible == true){
             invincibleCounter++;
             if(invincibleCounter > 40){
@@ -392,6 +401,107 @@ public class Entity implements Updateable, Drawable {
             shotAvailableCounter ++;
         }
     }
+    public void attacking(){
+
+        spriteCounter++;
+        if(spriteCounter <= 5){
+            spriteNum=1;
+        }
+        if(spriteCounter >5 && spriteCounter <= 25){
+            spriteNum=2;
+
+
+            int currentWorldX = worldX;
+            int currentWorldY = worldY;
+            int solidAreaWidth = solidArea.width;
+            int solidAreaHeight = solidArea.height;
+
+            switch (direction){
+                case "up": worldY -= attackArea.height;break;
+                case "down": worldY +=attackArea.height;break;
+                case "left": worldX -= attackArea.width;break;
+                case "right": worldX += attackArea.width;break;
+            }
+
+            solidArea.width = attackArea.width;
+            solidArea.height = attackArea.height;
+
+            if(type == type_mob){
+                if(gp.checker.checkPlayer(this) == true){
+                    damagePlayer(attack);
+                }
+            }
+            else{
+                int mobIndex = gp.checker.checkEntity(this, gp.mob);
+                gp.player.damageMob(mobIndex,attack, currentWeapon.knockbackPower);
+
+                int iTileIndex = gp.checker.checkEntity(this,gp.iTile);
+                gp.player.damageInteractiveTile(iTileIndex);
+
+                int projectileIndex = gp.checker.checkEntity(this, gp.projectile);
+                gp.player.damageProjectile(projectileIndex);
+
+            }
+
+
+
+            worldX = currentWorldX;
+            worldY = currentWorldY;
+            solidArea.width = solidAreaWidth;
+            solidArea.height = solidAreaHeight;
+
+
+
+        }
+        if(spriteCounter >25){
+            spriteNum=1;
+            spriteCounter=0;
+            attacking = false;
+        }
+    }
+    public void checkAttack(int rate, int vertical, int horizontal){
+        boolean targetInRange = false;
+        int xDis = getXDistance(gp.player);
+        int yDis = getYDistance(gp.player);
+
+        switch (direction){
+            case "up":
+                if(gp.player.worldY < worldY && yDis < vertical && xDis < horizontal)
+                    targetInRange = true;
+                break;
+            case "down":
+                if(gp.player.worldY > worldY && yDis < vertical && xDis < horizontal)
+                    targetInRange = true;
+                break;
+            case "left":
+                if(gp.player.worldX < worldX && xDis < vertical && yDis < horizontal)
+                    targetInRange = true;
+                break;
+            case "right":
+                if(gp.player.worldX > worldX && xDis < vertical && yDis < horizontal)
+                    targetInRange = true;
+                break;
+        }
+
+        if(targetInRange == true){
+           int i = new Random().nextInt(rate);
+           if(i == 0){
+               attacking = true;
+               spriteNum = 1;
+               spriteCounter = 0;
+               shotAvailableCounter = 0;
+           }
+        }
+    }
+    public int getXDistance(Entity target){
+        int xDistance = Math.abs(worldX - target.worldX);
+        return xDistance;
+    }
+    public int getYDistance(Entity target){
+        int yDistance = Math.abs(worldY - target.worldY);
+        return yDistance;
+    }
+
     public void damagePlayer(int attack){
         if(gp.player.invincible == false){
             gp.playSoundEffect(5);
