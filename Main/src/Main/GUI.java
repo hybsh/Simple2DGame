@@ -1,6 +1,7 @@
 package Main;
 
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicButtonUI;
 import javax.xml.transform.Result;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -28,43 +29,97 @@ public class GUI implements ActionListener {
         this.startArg = startArg;
         this.level = level;
         JFrame frame = new JFrame();
-        frame.setSize(350,200);
+        frame.setSize(671,535);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        JPanel panel = new JPanel();
+        JPanel panel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Image backgroundImage = new ImageIcon(getClass().getResource("/login/background1.jpg")).getImage();
+                g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+            }
+        };
         frame.add(panel);
 
         panel.setLayout(null);
 
         userLabel = new JLabel("User");
-        userLabel.setBounds(10,20,80,25);
+        userLabel.setBounds(10,303,80,25);
+        userLabel.setForeground(Color.WHITE);
         panel.add(userLabel);
 
         userText = new JTextField(20);
-        userText.setBounds(100,20,165,25);
+        userText.setBounds(85,303,485,30);
+        userText.setOpaque(false);
+        userText.setBackground(new Color(0, 0, 0, 0));
+        userText.setForeground(Color.WHITE);
+        userText.setCaretColor(Color.WHITE);
+        userText.setBorder(null);
         panel.add(userText);
 
         passwordLabel = new JLabel("Password");
-        passwordLabel.setBounds(10,50,80,25);
+        passwordLabel.setBounds(10,355,80,25);
+        passwordLabel.setForeground(Color.WHITE);
         panel.add(passwordLabel);
 
         passwordText = new JPasswordField(20);
-        passwordText.setBounds(100,50,165,25);
+        passwordText.setBounds(85,355,485,30);
+        passwordText.setOpaque(false);
+        passwordText.setBackground(new Color(0, 0, 0, 0));
+        passwordText.setForeground(Color.WHITE);
+        passwordText.setCaretColor(Color.WHITE);
+        passwordText.setBorder(null);
         panel.add(passwordText);
 
         button = new JButton("Login");
-        button.setBounds(10,80,80,25);
+        button.setBounds(85,415,185,30);
         button.addActionListener(new GUI());
+        button.setOpaque(false);
+        button.setContentAreaFilled(false);
+        button.setBorderPainted(false);
+        button.setForeground(new Color(0, 0, 0, 0));
+        button.setUI(new BasicButtonUI() {
+            @Override
+            protected void paintFocus(Graphics g, AbstractButton button,
+                                      Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {
+                int focusThickness = 2;
+                Graphics2D g2d = (Graphics2D) g.create();
+                g2d.setColor(Color.WHITE);
+                g2d.setStroke(new BasicStroke(focusThickness));
+                g2d.drawRect(textRect.x - 35 * focusThickness, textRect.y - 2 * focusThickness,
+                        textRect.width + 70 * focusThickness, textRect.height + 5 * focusThickness);
+                g2d.dispose();
+            }
+        });
         panel.add(button);
 
         button = new JButton("Register");
-        button.setBounds(140,80,100,25);
+        button.setBounds(335,415,235,30);
         button.addActionListener(new GUI());
+        button.setOpaque(false);
+        button.setContentAreaFilled(false);
+        button.setBorderPainted(false);
+        button.setForeground(new Color(0, 0, 0, 0));
+        button.setUI(new BasicButtonUI() {
+            @Override
+            protected void paintFocus(Graphics g, AbstractButton button,
+                                      Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {
+                int focusThickness = 2;
+                Graphics2D g2d = (Graphics2D) g.create();
+                g2d.setColor(Color.WHITE);
+                g2d.setStroke(new BasicStroke(focusThickness));
+                g2d.drawRect(textRect.x - 45 * focusThickness, textRect.y - 2 * focusThickness,
+                        textRect.width + 92 * focusThickness, textRect.height + 5 * focusThickness);
+                g2d.dispose();
+            }
+        });
         panel.add(button);
 
         success = new JLabel("");
         success.setBounds(10,110,300,25);
         panel.add(success);
 
+        frame.setLocationRelativeTo(null);
 
         frame.setVisible(true);
     }

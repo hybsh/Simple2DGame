@@ -1,4 +1,4 @@
-package AI;
+package Entity.AI;
 
 import Main.gamePannel;
 

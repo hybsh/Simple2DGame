@@ -1,4 +1,4 @@
-package AI;
+package Entity.AI;
 
 public class Node {
 
