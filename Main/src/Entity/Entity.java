@@ -151,9 +151,9 @@ public class Entity implements Updateable, Drawable {
         int tempScreenY = screenY;
 
 
-        if(     worldX + gp.tileSize > gp.player.worldX - gp.player.screenX &&
+        if(     worldX + gp.tileSize*5 > gp.player.worldX - gp.player.screenX &&
                 worldX - gp.tileSize< gp.player.worldX + gp.player.screenX &&
-                worldY + gp.tileSize> gp.player.worldY - gp.player.screenY &&
+                worldY + gp.tileSize*5> gp.player.worldY - gp.player.screenY &&
                 worldY - gp.tileSize< gp.player.worldY + gp.player.screenX
         )
         {
@@ -168,7 +168,7 @@ public class Entity implements Updateable, Drawable {
                         }
                     }
                     if(attacking == true){
-                        tempScreenY = screenY - gp.tileSize;
+                        tempScreenY = screenY + up1.getHeight();
                         if (spriteNum == 1) {
                             image = attackup1;
                         }
@@ -199,6 +199,7 @@ public class Entity implements Updateable, Drawable {
                     break;
                 case "left":
                     if(attacking == false) {
+                        tempScreenX = tempScreenX - up1.getWidth()*4;
                         if (spriteNum == 1) {
                             image = left1;
                         }
@@ -207,7 +208,7 @@ public class Entity implements Updateable, Drawable {
                         }
                     }
                     if(attacking == true){
-                        tempScreenX = tempScreenX - gp.tileSize;
+                        tempScreenX = tempScreenX - up1.getWidth();
                         if (spriteNum == 1) {
                             image = attackleft1;
                         }
@@ -466,19 +467,19 @@ public class Entity implements Updateable, Drawable {
 
         switch (direction){
             case "up":
-                if(gp.player.worldY < worldY && yDis < vertical && xDis < horizontal)
+                if(gp.player.getCenterY() < getCenterY() && yDis < vertical && xDis < horizontal)
                     targetInRange = true;
                 break;
             case "down":
-                if(gp.player.worldY > worldY && yDis < vertical && xDis < horizontal)
+                if(gp.player.getCenterY() > getCenterY() && yDis < vertical && xDis < horizontal)
                     targetInRange = true;
                 break;
             case "left":
-                if(gp.player.worldX < worldX && xDis < vertical && yDis < horizontal)
+                if(gp.player.getCenterX() < getCenterX() && xDis < vertical && yDis < horizontal)
                     targetInRange = true;
                 break;
             case "right":
-                if(gp.player.worldX > worldX && xDis < vertical && yDis < horizontal)
+                if(gp.player.getCenterX() > getCenterX() && xDis < vertical && yDis < horizontal)
                     targetInRange = true;
                 break;
         }
@@ -494,12 +495,20 @@ public class Entity implements Updateable, Drawable {
         }
     }
     public int getXDistance(Entity target){
-        int xDistance = Math.abs(worldX - target.worldX);
+        int xDistance = Math.abs(getCenterX() - target.getCenterX());
         return xDistance;
     }
     public int getYDistance(Entity target){
-        int yDistance = Math.abs(worldY - target.worldY);
+        int yDistance = Math.abs(getCenterY() - target.getCenterY());
         return yDistance;
+    }
+    public int getCenterX(){
+        int centerX = worldX + up1.getWidth()/2;
+        return centerX;
+    }
+    public int getCenterY(){
+        int centerY = worldY + up1.getHeight()/2;
+        return centerY;
     }
 
     public void damagePlayer(int attack){
@@ -623,6 +632,28 @@ public class Entity implements Updateable, Drawable {
             }
         }
         return index;
+    }
+    public void moveToPlayer(int interval){
+        actionLockCounter++;
+        if(actionLockCounter > interval){
+            if(getXDistance(gp.player) > getYDistance(gp.player)){
+                if(gp.player.getCenterX() < getCenterX()){
+                    direction = "left";
+                }
+                else {
+                    direction = "right";
+                }
+            }
+            else if(getXDistance(gp.player) < getYDistance(gp.player)){
+                if(gp.player.getCenterY() < getCenterY()){
+                    direction = "up";
+                }
+                else {
+                    direction = "down";
+                }
+            }
+            actionLockCounter = 0;
+        }
     }
 }
 

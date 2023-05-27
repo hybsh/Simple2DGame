@@ -26,13 +26,17 @@ public class Boss extends Entity {
         attack = 5;
         defense = 0;
         XP = 2;
+        knockbackPower = 5;
 
-        solidArea.x = 4;
-        solidArea.y = 4;
-        solidArea.width = 40;
-        solidArea.height = 30;
+        int size = gp.tileSize * 3;
+        solidArea.x = 48;
+        solidArea.y = 48;
+        solidArea.width = size - 48*2;
+        solidArea.height = size - 48;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
+        attackArea.width = 170;
+        attackArea.height = 170;
 
         getImage();
         getAttackImage();
@@ -66,9 +70,9 @@ public class Boss extends Entity {
         }
 
     public void setAction(){
-       move_to_player();
-       if(attacking == false){
-           checkAttack(30, gp.tileSize*4, gp.tileSize);
+        moveToPlayer(60);
+        if(attacking == false){
+           checkAttack(60, gp.tileSize*3, gp.tileSize*5);
        }
     }
 
