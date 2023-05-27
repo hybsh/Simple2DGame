@@ -42,34 +42,64 @@ public class Boss extends Entity {
         getAttackImage();
     }
 
-    public void getImage(){
-        
-        int i = 3;
-
-        up1 = prepImg("/boss/skeletonlord_up_1", gp.tileSize*i, gp.tileSize*i);
-        up2 = prepImg("/boss/skeletonlord_up_2", gp.tileSize*i, gp.tileSize*i);
-        down1 = prepImg("/boss/skeletonlord_down_1", gp.tileSize*i, gp.tileSize*i);
-        down2 = prepImg("/boss/skeletonlord_down_2", gp.tileSize*i, gp.tileSize*i);
-        left1 = prepImg("/boss/skeletonlord_left_1", gp.tileSize*i, gp.tileSize*i);
-        left2 = prepImg("/boss/skeletonlord_left_2", gp.tileSize*i, gp.tileSize*i);
-        right1 = prepImg("/boss/skeletonlord_right_1", gp.tileSize*i, gp.tileSize*i);
-        right2 = prepImg("/boss/skeletonlord_right_2", gp.tileSize*i, gp.tileSize*i);
-    }
-    public void getAttackImage(){
+    public void getImage() {
 
         int i = 3;
-        
-        attackup1 = prepImg("/boss/skeletonlord_attack_up_1", gp.tileSize*i, gp.tileSize*i * 2);
-        attackup2 = prepImg("/boss/skeletonlord_attack_up_2", gp.tileSize*i, gp.tileSize*i * 2);
-        attackdown1 = prepImg("/boss/skeletonlord_attack_down_1", gp.tileSize*i, gp.tileSize*i * 2);
-        attackdown2 = prepImg("/boss/skeletonlord_attack_down_2", gp.tileSize*i, gp.tileSize*i * 2);
-        attackleft1 = prepImg("/boss/skeletonlord_attack_left_1", gp.tileSize*i * 2, gp.tileSize*i);
-        attackleft2 = prepImg("/boss/skeletonlord_attack_left_2", gp.tileSize*i * 2, gp.tileSize*i);
-        attackright1 = prepImg("/boss/skeletonlord_attack_right_1", gp.tileSize*i * 2, gp.tileSize*i);
-        attackright2 = prepImg("/boss/skeletonlord_attack_right_2", gp.tileSize*i * 2, gp.tileSize*i);
+        if (inRage == false) {
+            up1 = prepImg("/boss/skeletonlord_up_1", gp.tileSize * i, gp.tileSize * i);
+            up2 = prepImg("/boss/skeletonlord_up_2", gp.tileSize * i, gp.tileSize * i);
+            down1 = prepImg("/boss/skeletonlord_down_1", gp.tileSize * i, gp.tileSize * i);
+            down2 = prepImg("/boss/skeletonlord_down_2", gp.tileSize * i, gp.tileSize * i);
+            left1 = prepImg("/boss/skeletonlord_left_1", gp.tileSize * i, gp.tileSize * i);
+            left2 = prepImg("/boss/skeletonlord_left_2", gp.tileSize * i, gp.tileSize * i);
+            right1 = prepImg("/boss/skeletonlord_right_1", gp.tileSize * i, gp.tileSize * i);
+            right2 = prepImg("/boss/skeletonlord_right_2", gp.tileSize * i, gp.tileSize * i);
         }
+        else{
+            up1 = prepImg("/boss/skeletonlord_phase2_up_1", gp.tileSize * i, gp.tileSize * i);
+            up2 = prepImg("/boss/skeletonlord_phase2_up_2", gp.tileSize * i, gp.tileSize * i);
+            down1 = prepImg("/boss/skeletonlord_phase2_down_1", gp.tileSize * i, gp.tileSize * i);
+            down2 = prepImg("/boss/skeletonlord_phase2_down_2", gp.tileSize * i, gp.tileSize * i);
+            left1 = prepImg("/boss/skeletonlord_phase2_left_1", gp.tileSize * i, gp.tileSize * i);
+            left2 = prepImg("/boss/skeletonlord_phase2_left_2", gp.tileSize * i, gp.tileSize * i);
+            right1 = prepImg("/boss/skeletonlord_phase2_right_1", gp.tileSize * i, gp.tileSize * i);
+            right2 = prepImg("/boss/skeletonlord_phase2_right_2", gp.tileSize * i, gp.tileSize * i);
+        }
+    }
+    public void getAttackImage() {
+
+        int i = 3;
+        if (inRage == false) {
+            attackup1 = prepImg("/boss/skeletonlord_attack_up_1", gp.tileSize * i, gp.tileSize * i * 2);
+            attackup2 = prepImg("/boss/skeletonlord_attack_up_2", gp.tileSize * i, gp.tileSize * i * 2);
+            attackdown1 = prepImg("/boss/skeletonlord_attack_down_1", gp.tileSize * i, gp.tileSize * i * 2);
+            attackdown2 = prepImg("/boss/skeletonlord_attack_down_2", gp.tileSize * i, gp.tileSize * i * 2);
+            attackleft1 = prepImg("/boss/skeletonlord_attack_left_1", gp.tileSize * i * 2, gp.tileSize * i);
+            attackleft2 = prepImg("/boss/skeletonlord_attack_left_2", gp.tileSize * i * 2, gp.tileSize * i);
+            attackright1 = prepImg("/boss/skeletonlord_attack_right_1", gp.tileSize * i * 2, gp.tileSize * i);
+            attackright2 = prepImg("/boss/skeletonlord_attack_right_2", gp.tileSize * i * 2, gp.tileSize * i);
+        }
+        else {
+            attackup1 = prepImg("/boss/skeletonlord_phase2_attack_up_1", gp.tileSize * i, gp.tileSize * i * 2);
+            attackup2 = prepImg("/boss/skeletonlord_phase2_attack_up_2", gp.tileSize * i, gp.tileSize * i * 2);
+            attackdown1 = prepImg("/boss/skeletonlord_phase2_attack_down_1", gp.tileSize * i, gp.tileSize * i * 2);
+            attackdown2 = prepImg("/boss/skeletonlord_phase2_attack_down_2", gp.tileSize * i, gp.tileSize * i * 2);
+            attackleft1 = prepImg("/boss/skeletonlord_phase2_attack_left_1", gp.tileSize * i * 2, gp.tileSize * i);
+            attackleft2 = prepImg("/boss/skeletonlord_phase2_attack_left_2", gp.tileSize * i * 2, gp.tileSize * i);
+            attackright1 = prepImg("/boss/skeletonlord_phase2_attack_right_1", gp.tileSize * i * 2, gp.tileSize * i);
+            attackright2 = prepImg("/boss/skeletonlord_phase2_attack_right_2", gp.tileSize * i * 2, gp.tileSize * i);
+        }
+    }
 
     public void setAction(){
+        if(inRage == false && life < maxLife/2){
+            inRage = true;
+            getImage();
+            getAttackImage();
+            defaultSpeed++;
+            speed = defaultSpeed;
+            attack *=2;
+        }
         moveToPlayer(60);
         if(attacking == false){
            checkAttack(60, gp.tileSize*3, gp.tileSize*5);

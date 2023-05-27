@@ -39,6 +39,7 @@ public class Entity implements Updateable, Drawable {
     public boolean dying = false;
     public boolean hpBarOn = false;
     public boolean knockback = false;
+    public boolean inRage = false;
 
 
     //COUNTERS
