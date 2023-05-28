@@ -18,7 +18,8 @@ public class Boss extends Entity {
         super(gp);
         this.gp = gp;
         type = type_mob;
-        name = "Slime";
+        boss = true;
+        name = "Skeletor";
         defaultSpeed = 1;
         speed = defaultSpeed;
         maxLife = 3;

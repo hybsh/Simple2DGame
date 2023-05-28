@@ -23,7 +23,7 @@ public class Projectile extends Entity implements Updateable{
         if(user == gp.player){
             int mobIndex = gp.checker.checkEntity(this,gp.mob);
             if(mobIndex != 999){
-                gp.player.damageMob(mobIndex, attack,knockbackPower);
+                gp.player.damageMob(mobIndex, attack*(gp.player.level/2),knockbackPower);
                 generateParticle(user.projectile, gp.mob[gp.currentMap][mobIndex]);
                 alive = false;
             }
