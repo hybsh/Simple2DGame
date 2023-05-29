@@ -391,7 +391,10 @@ public class Player extends Entity implements Updateable, Drawable {
         if(invincible == true){
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
         }
-        g2.drawImage(image, tempScreenX, tempScreenY,null);
+        if(drawing == true){
+            g2.drawImage(image, tempScreenX, tempScreenY,null);
+        }
+
 
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
 

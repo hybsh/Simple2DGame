@@ -15,7 +15,6 @@ import java.util.Random;
 public class Entity implements Updateable, Drawable {
     gamePannel gp;
 
-    public boolean boss_attack = false;
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
     public  BufferedImage attackup1,attackup2,attackdown1,attackdown2,attackleft1,attackleft2,attackright1,attackright2;
     public BufferedImage image,image2,image3;
@@ -23,7 +22,8 @@ public class Entity implements Updateable, Drawable {
     public Rectangle attackArea = new Rectangle(0,0,0,0);
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collision = false;
-    String dialogues[] = new String[20];
+    public String dialogues[] = new String[20];
+    public boolean temp = false;
 
 
 
@@ -40,6 +40,8 @@ public class Entity implements Updateable, Drawable {
     public boolean hpBarOn = false;
     public boolean knockback = false;
     public boolean inRage = false;
+    public boolean sleep = false;
+    public boolean drawing = true;
 
 
     //COUNTERS
@@ -296,108 +298,112 @@ public class Entity implements Updateable, Drawable {
     }
     public void update(){
 
-        if(knockback == true){
+        if(sleep == false){
+            if(knockback == true){
 
-            gp.checker.checkTile(this);
-            gp.checker.checkObject(this, false);
-            gp.checker.checkEntity(this, gp.npc);
-            gp.checker.checkEntity(this, gp.mob);
-            gp.checker.checkEntity(this, gp.iTile);
+                gp.checker.checkTile(this);
+                gp.checker.checkObject(this, false);
+                gp.checker.checkEntity(this, gp.npc);
+                gp.checker.checkEntity(this, gp.mob);
+                gp.checker.checkEntity(this, gp.iTile);
 
-            if(collisonOn == true){
-                knockbackCounter = 0;
-                knockback = false;
-                speed = defaultSpeed;
-            }
-            else if(collisonOn == false){
-                switch(gp.player.direction){
-                    case "up": {
-                        worldY -= speed;
-                        break;
-                    }
-                    case "down": {
-                        worldY += speed;
-                        break;
-                    }
-                    case "left": {
-                        worldX -= speed;
-                        break;
-                    }
-                    case "right": {
-                        worldX += speed;
-                        break;
+                if(collisonOn == true){
+                    knockbackCounter = 0;
+                    knockback = false;
+                    speed = defaultSpeed;
+                }
+                else if(collisonOn == false){
+                    switch(gp.player.direction){
+                        case "up": {
+                            worldY -= speed;
+                            break;
+                        }
+                        case "down": {
+                            worldY += speed;
+                            break;
+                        }
+                        case "left": {
+                            worldX -= speed;
+                            break;
+                        }
+                        case "right": {
+                            worldX += speed;
+                            break;
+                        }
                     }
                 }
-            }
-            knockbackCounter++;
-            if(knockbackCounter == 10){
-                knockback = false;
-                knockbackCounter = 0;
-                speed = defaultSpeed;
-            }
-        }
-        else if(attacking == true){
-            attacking();
-        }
-        else {
-            setAction();
-
-            collisonOn = false;
-            gp.checker.checkTile(this);
-            gp.checker.checkObject(this, false);
-            gp.checker.checkEntity(this, gp.npc);
-            gp.checker.checkEntity(this, gp.mob);
-            gp.checker.checkEntity(this, gp.iTile);
-            boolean contactPlayer = gp.checker.checkPlayer(this);
-
-            if (this.type == type_mob && contactPlayer == true) {
-                damagePlayer(attack);
-            }
-
-
-            if (collisonOn == false) {
-                switch (direction) {
-                    case "up": {
-                        worldY -= speed;
-                        break;
-                    }
-                    case "down": {
-                        worldY += speed;
-                        break;
-                    }
-                    case "left": {
-                        worldX -= speed;
-                        break;
-                    }
-                    case "right": {
-                        worldX += speed;
-                        break;
-                    }
+                knockbackCounter++;
+                if(knockbackCounter == 10){
+                    knockback = false;
+                    knockbackCounter = 0;
+                    speed = defaultSpeed;
                 }
             }
-            spriteCounter++;
-            if(spriteCounter > 10){
-                if(spriteNum == 1){
-                    spriteNum =2;
+            else if(attacking == true){
+                attacking();
+            }
+            else {
+                setAction();
+
+                collisonOn = false;
+                gp.checker.checkTile(this);
+                gp.checker.checkObject(this, false);
+                gp.checker.checkEntity(this, gp.npc);
+                gp.checker.checkEntity(this, gp.mob);
+                gp.checker.checkEntity(this, gp.iTile);
+                boolean contactPlayer = gp.checker.checkPlayer(this);
+
+                if (this.type == type_mob && contactPlayer == true) {
+                    damagePlayer(attack);
                 }
-                else if(spriteNum == 2){
-                    spriteNum =1;
+
+
+                if (collisonOn == false) {
+                    switch (direction) {
+                        case "up": {
+                            worldY -= speed;
+                            break;
+                        }
+                        case "down": {
+                            worldY += speed;
+                            break;
+                        }
+                        case "left": {
+                            worldX -= speed;
+                            break;
+                        }
+                        case "right": {
+                            worldX += speed;
+                            break;
+                        }
+                    }
                 }
-                spriteCounter = 0;
+                spriteCounter++;
+                if(spriteCounter > 10){
+                    if(spriteNum == 1){
+                        spriteNum =2;
+                    }
+                    else if(spriteNum == 2){
+                        spriteNum =1;
+                    }
+                    spriteCounter = 0;
+                }
+            }
+
+
+            if(invincible == true){
+                invincibleCounter++;
+                if(invincibleCounter > 40){
+                    invincible = false;
+                    invincibleCounter = 0;
+                }
+            }
+            if(shotAvailableCounter < 30){
+                shotAvailableCounter ++;
             }
         }
 
 
-        if(invincible == true){
-            invincibleCounter++;
-            if(invincibleCounter > 40){
-                invincible = false;
-                invincibleCounter = 0;
-            }
-        }
-        if(shotAvailableCounter < 30){
-            shotAvailableCounter ++;
-        }
     }
     public void attacking(){
 

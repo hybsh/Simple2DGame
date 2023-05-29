@@ -49,6 +49,7 @@ public class gamePannel extends JPanel implements Runnable,Updateable{
     config  config = new config(this);
     EnvManager eManager  = new EnvManager(this);
     Map map = new Map(this);
+    public cutsceneManager csManager = new cutsceneManager(this);
     Thread gameThread;
     public collisionCheck checker = new collisionCheck(this);
     public entitySetter eSetter = new entitySetter(this);
@@ -78,6 +79,9 @@ public class gamePannel extends JPanel implements Runnable,Updateable{
     public final int tradeState = 8;
     public final int sleepState = 9;
     public final int mapState = 10;
+    public final int cutsceneState = 11;
+
+    public boolean bossBattleOn = false;
 
 
     public int currentArea;
@@ -125,17 +129,21 @@ public class gamePannel extends JPanel implements Runnable,Updateable{
     public void retry(){
         player.setDefaultPositions();
         player.restoreLifeAndMana();
+        removeTempEntity();
+        bossBattleOn = false;
         eSetter.setNPC();
         eSetter.setMobz();
     }
     public void restart(){
         player.setDefaultValues();
+        removeTempEntity();
         player.setDefaultPositions();
         player.setItems();
         eSetter.setObject();
         eSetter.setNPC();
         eSetter.setMobz();
         eSetter.setInteractiveTiles();
+
     }
     public void startThread(){
         gameThread = new Thread(this);
@@ -294,6 +302,8 @@ public class gamePannel extends JPanel implements Runnable,Updateable{
 
             map.drawMiniMap(g2);
 
+            csManager.draw(g2);
+
             UI.draw(g2);
         }
 
@@ -345,5 +355,15 @@ public class gamePannel extends JPanel implements Runnable,Updateable{
         }
         currentArea = nextArea;
         eSetter.setMobz();
+    }
+    public void removeTempEntity(){
+        for(int mapNum = 0; mapNum < maxMap; mapNum++){
+
+            for(int i = 0; i < obj[1].length; i++){
+                if(obj[mapNum][i] != null && obj[mapNum][i].temp == true)
+                    obj[mapNum][i] = null;
+            }
+
+        }
     }
 }

@@ -74,6 +74,13 @@ public class entitySetter {
         gp.obj[mapNum][13].worldX = gp.tileSize *18;
         gp.obj[mapNum][13].worldY = gp.tileSize *21;
 
+        mapNum = 3;
+        int i = 0;
+        gp.obj[mapNum][i] = new OBJ_Door(gp);
+        gp.obj[mapNum][i].worldX = gp.tileSize * 25;
+        gp.obj[mapNum][i].worldY = gp.tileSize * 15;
+        i++;
+
     }
     public void setNPC(){
         int mapNum = 0;
@@ -112,8 +119,8 @@ public class entitySetter {
             gp.mob[mapNum][4].worldY = gp.tileSize * 10;
 
             gp.mob[3][5] = new Boss(gp);
-            gp.mob[3][5].worldX = gp.tileSize * 20;
-            gp.mob[3][5].worldY = gp.tileSize * 20;
+            gp.mob[3][5].worldX = gp.tileSize * 24;
+            gp.mob[3][5].worldY = gp.tileSize * 17;
         }
         else if(gp.level.equals("Medium")){
             int mapNum = 0;

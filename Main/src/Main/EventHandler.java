@@ -73,7 +73,13 @@ public class EventHandler {
                 teleport(0,12,10,gp.outside);
             }
             else if(hit(2,25,18,"any") == true){
-                teleport(3,22,22,gp.dungeon);
+                teleport(3,26,41,gp.dungeon);
+            }
+            else if(hit(3,26,41,"any") == true){
+                teleport(2,25,18,gp.dungeon);
+            }
+            else if(hit(3,25,27,"any") == true){
+                boss();
             }
 
         }
@@ -140,6 +146,13 @@ public class EventHandler {
             gp.gameState  = gp.dialogueState;
             gp.player.attacKCanceled = true;
             entity.speak();
+        }
+    }
+
+    public void boss(){
+        if(gp.bossBattleOn == false){
+            gp.gameState = gp.cutsceneState;
+            gp.csManager.sceneNum = gp.csManager.boss;
         }
     }
 

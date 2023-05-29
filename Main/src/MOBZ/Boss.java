@@ -28,6 +28,7 @@ public class Boss extends Entity {
         defense = 0;
         XP = 2;
         knockbackPower = 5;
+        sleep = true;
 
         int size = gp.tileSize * 3;
         solidArea.x = 48;
@@ -41,6 +42,7 @@ public class Boss extends Entity {
 
         getImage();
         getAttackImage();
+        setDialogue();
     }
 
     public void getImage() {
@@ -121,6 +123,10 @@ public class Boss extends Entity {
                     counter = 0;
                 }
             }
+        }
+        public void setDialogue(){
+            dialogues[0] = "No one can steal my treasure!";
+            dialogues[1] = "You will die here!";
         }
 
         public void move_to_player(){
