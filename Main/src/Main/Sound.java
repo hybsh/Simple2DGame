@@ -28,6 +28,7 @@ public class Sound {
         soundURL[10] = getClass().getResource("/SFX/Spell2.wav");
         soundURL[11] = getClass().getResource("/SFX/Spell3.wav");
         soundURL[12] = getClass().getResource("/SFX/Dungeon.wav");
+        soundURL[13] = getClass().getResource("/SFX/StarWars.wav");
     }
 
     public void setFile(int i){

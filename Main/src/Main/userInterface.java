@@ -358,7 +358,7 @@ public class userInterface implements Drawable {
 
     public void drawTitleScreen(){
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,64F));
-        String text = "Project Let's goo";
+        String text = "Sigma Dungeons";
         int x = getXforCenterText(text);
         int y = gp.tileSize * 3;
 

@@ -30,7 +30,7 @@ public class gamePannel extends JPanel implements Runnable,Updateable{
     public final int maxScreenCol = 20;
     public final int maxScreenRow = 12;
     public int maxMap = 10;
-    public int currentMap = 3;
+    public int currentMap = 0;
     public final int screenWidth = tileSize * maxScreenCol;
     public final int screenHeight = tileSize * maxScreenRow;
 

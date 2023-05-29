@@ -24,9 +24,9 @@ public class Boss extends Entity {
         name = "Skeletor";
         defaultSpeed = 1;
         speed = defaultSpeed;
-        maxLife = 3;
+        maxLife = 10;
         life = maxLife;
-        attack = 5;
+        attack = 2;
         defense = 0;
         XP = 2;
         knockbackPower = 5;

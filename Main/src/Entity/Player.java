@@ -73,7 +73,7 @@ public class Player extends Entity implements Updateable, Drawable {
         dexterity =1;
         XP = 0;
         nextLvlXP = 10;
-        money = 100;
+        money = 1000;
         currentWeapon = new OBJ_SWORD_NORMAL(gp);
         currentShield = new OBJ_SHIELD_NORMAL(gp);
         projectile = new OBJ_Fireball(gp);

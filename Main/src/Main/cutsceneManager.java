@@ -126,6 +126,7 @@ public class cutsceneManager {
 
                 if(alpha == 1f){
                     alpha = 0;
+                    gp.playBgMusic(13);
                     scenePhase++;
                 }
             }
