@@ -1,5 +1,6 @@
 package Main;
 
+import Data.Progress;
 import Entity.Entity;
 import Entity.Player;
 
@@ -81,6 +82,9 @@ public class EventHandler {
             else if(hit(3,25,27,"any") == true){
                 boss();
             }
+            else if(hit(3,25,8,"any") == true){
+                end();
+            }
 
         }
     }
@@ -150,10 +154,14 @@ public class EventHandler {
     }
 
     public void boss(){
-        if(gp.bossBattleOn == false){
+        if(gp.bossBattleOn == false && Progress.bossDefeated == false){
             gp.gameState = gp.cutsceneState;
             gp.csManager.sceneNum = gp.csManager.boss;
         }
+    }
+    public void end(){
+        gp.gameState = gp.cutsceneState;
+        gp.csManager.sceneNum = gp.csManager.end;
     }
 
 

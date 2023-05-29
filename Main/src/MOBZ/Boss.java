@@ -1,11 +1,13 @@
 package MOBZ;
 
+import Data.Progress;
 import Entity.Entity;
 import Main.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Random;
+import Object.*;
 
 public class Boss extends Entity {
     gamePannel gp;
@@ -167,4 +169,19 @@ public class Boss extends Entity {
                 change_sprite();
             }
         }
+
+    public void checkDrop(){
+
+
+
+        gp.bossBattleOn = false;
+        Progress.bossDefeated = true;
+
+        for(int i = 0; i < gp.obj[1].length;i++){
+            if(gp.obj[gp.currentMap][i] != null && gp.obj[gp.currentMap][i].name.equals("Door")){
+                gp.obj[gp.currentMap][i] = null;
+            }
+        }
+       dropItem(new OBJ_Key(gp));
+    }
     }

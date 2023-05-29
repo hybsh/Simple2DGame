@@ -1,5 +1,6 @@
 package Main;
 
+import Data.Progress;
 import Entity.NPC_Merchant;
 import Entity.NPC_Priest;
 import InteractiveTile.IT_Dry_Tree;
@@ -80,6 +81,10 @@ public class entitySetter {
         gp.obj[mapNum][i].worldX = gp.tileSize * 25;
         gp.obj[mapNum][i].worldY = gp.tileSize * 15;
         i++;
+        gp.obj[mapNum][i] = new OBJ_Diamond(gp);
+        gp.obj[mapNum][i].worldX = gp.tileSize * 25;
+        gp.obj[mapNum][i].worldY = gp.tileSize * 8;
+        i++;
 
     }
     public void setNPC(){
@@ -118,9 +123,11 @@ public class entitySetter {
             gp.mob[mapNum][4].worldX = gp.tileSize * 13;
             gp.mob[mapNum][4].worldY = gp.tileSize * 10;
 
-            gp.mob[3][5] = new Boss(gp);
-            gp.mob[3][5].worldX = gp.tileSize * 24;
-            gp.mob[3][5].worldY = gp.tileSize * 17;
+            if(Progress.bossDefeated == false) {
+                gp.mob[3][5] = new Boss(gp);
+                gp.mob[3][5].worldX = gp.tileSize * 24;
+                gp.mob[3][5].worldY = gp.tileSize * 17;
+            }
         }
         else if(gp.level.equals("Medium")){
             int mapNum = 0;
